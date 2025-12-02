@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Co-o creativo | Agencia de fotografía y video en Colombia</title>
+
+  <meta name="description" content="Co-o creativo es una agencia audiovisual de fotografía y video en Colombia. Colaboramos con marcas en Latinoamérica que buscan historias auténticas y nuevas narrativas.">
+
+  <style>
+    :root {
+      --bg: #050509;
+      --bg-alt: #0b0b10;
+      --bg-soft: #111119;
+      --text: #f5f5f7;
+      --muted: #86868b;
+      --accent: #ff3b30;
+      --accent-soft: rgba(255, 59, 48, 0.12);
+      --border: #2c2c34;
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-pill: 999px;
+      --shadow-soft: 0 22px 60px rgba(0, 0, 0, 0.6);
+      --shadow-subtle: 0 12px 40px rgba(0, 0, 0, 0.4);
+      --max-width: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        system-ui, -system-ui, sans-serif;
+      background: radial-gradient(circle at top, #151521 0, #050509 45%, #020204 100%);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* NAV */
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(
+        to bottom,
+        rgba(5, 5, 9, 0.98),
+        rgba(5, 5, 9, 0.88),
+        transparent
+      );
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 40% 60% 45% 55%;
+      background: radial-gradient(circle at 20% 20%, #ff9f0a, #ff3b30 55%, #8e24ff 100%);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+    }
+
+    .logo-text {
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .nav-links a {
+      position: relative;
+      padding: 4px 0;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #ff9f0a, #ff3b30);
+      border-radius: 999px;
+      transition: width 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.02);
+      font-size: 0.85rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: background 0.2s ease, border 0.2s ease, transform 0.1s ease;
+    }
+
+    .nav-cta:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-1px);
+    }
+
+    .nav-cta-dot {
+      width: 6px;
+      height: 6px;
+      background: #32d74b;
+      border-radius: 999px;
+      box-shadow: 0 0 10px rgba(50, 215, 75, 0.8);
+    }
+
+    .nav-toggle {
+      display: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(9, 9, 15, 0.9);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .nav-toggle span {
+      width: 18px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 999px;
+      position: relative;
+    }
+
+    .nav-toggle span::before,
+    .nav-toggle span::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 18px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 999px;
+    }
+
+    .nav-toggle span::before {
+      top: -5px;
+    }
+
+    .nav-toggle span::after {
+      top: 5px;
+    }
+
+    /* HERO */
+
+    .hero {
+      padding: 72px 0 80px;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1.1fr);
+      gap: 48px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(5, 5, 9, 0.9);
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .eyebrow-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: conic-gradient(from 120deg, #ff9f0a, #ff3b30, #8e24ff, #ff9f0a);
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 4vw, 3.3rem);
+      line-height: 1.07;
+      letter-spacing: -0.03em;
+      margin-bottom: 18px;
+    }
+
+    .hero-title span.highlight {
+      background: linear-gradient(90deg, #ff9f0a, #ff3b30, #ff2d55);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 32rem;
+      margin-bottom: 26px;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-radius: var(--radius-pill);
+      font-size: 0.95rem;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.1s ease, box-shadow 0.2s ease, background 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, #ff9f0a, #ff3b30);
+      box-shadow: var(--shadow-soft);
+      color: #050509;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 26px 60px rgba(0, 0, 0, 0.8);
+    }
+
+    .btn-outline {
+      background: rgba(15, 15, 23, 0.9);
+      color: var(--text);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .btn-outline:hover {
+      background: rgba(26, 26, 36, 0.95);
+      transform: translateY(-1px);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .hero-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-meta-badge {
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .hero-media {
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      background: radial-gradient(circle at top left, #1d1d2f, #050509);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-media-main {
+      border-radius: 20px;
+      background: #000;
+      height: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-media-placeholder {
+      width: 92%;
+      height: 78%;
+      border-radius: 24px;
+      background: radial-gradient(circle at 20% 0, #ff9f0a, #ff3b30 40%, #8e24ff 85%);
+      filter: saturate(1.1);
+      transform: perspective(900px) rotateX(14deg) rotateY(-18deg);
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.85);
+    }
+
+    .hero-media-pill {
+      position: absolute;
+      left: 24px;
+      bottom: 22px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(9, 9, 15, 0.96);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.75rem;
+      color: var(--muted);
+      backdrop-filter: blur(18px);
+    }
+
+    .hero-media-pill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #32d74b;
+      box-shadow: 0 0 12px rgba(50, 215, 75, 0.8);
+    }
+
+    .hero-media-tag {
+      position: absolute;
+      right: 22px;
+      top: 22px;
+      padding: 6px 10px;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    /* SECTION GENERIC */
+
+    section {
+      padding: 60px 0;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+
+    .section-title {
+      font-size: 1.7rem;
+      letter-spacing: -0.03em;
+    }
+
+    .section-eyebrow {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .section-description {
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 420px;
+    }
+
+    /* SERVICIOS */
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .service-card {
+      background: rgba(9, 9, 15, 0.94);
+      border-radius: var(--radius-md);
+      padding: 18px 18px 20px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: var(--shadow-subtle);
+      display: flex;
+      flex-direction: column;
+      min-height: 180px;
+    }
+
+    .service-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 10px;
+      background: var(--accent-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      font-size: 0.9rem;
+    }
+
+    .service-title {
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+
+    .service-text {
+      font-size: 0.86rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .service-tag {
+      margin-top: auto;
+      font-size: 0.78rem;
+      color: var(--muted);
+      opacity: 0.9;
+    }
+
+    /* PORTAFOLIO */
+
+    .portfolio {
+      background: radial-gradient(circle at top, #151521 0, #050509 55%);
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 18px;
+    }
+
+    .portfolio-main,
+    .portfolio-side-card {
+      background: rgba(8, 8, 14, 0.96);
+      border-radius: var(--radius-lg);
+      padding: 18px 18px 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .portfolio-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+    }
+
+    .portfolio-title {
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .portfolio-text {
+      font-size: 0.86rem;
+      color: var(--muted);
+      max-width: 30rem;
+    }
+
+    .portfolio-thumb {
+      border-radius: 18px;
+      background: linear-gradient(135deg, #000000, #17151f);
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .portfolio-thumb-inner {
+      width: 90%;
+      height: 78%;
+      border-radius: 22px;
+      background: radial-gradient(circle at top left, #ff9f0a, #ff3b30 40%, #8e24ff 80%);
+      transform: perspective(900px) rotateX(16deg);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .portfolio-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .pill {
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .portfolio-link {
+      font-size: 0.86rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 6px;
+      color: #f5f5f7;
+    }
+
+    .portfolio-link span {
+      font-size: 1.1rem;
+      transform: translateY(1px);
+    }
+
+    .portfolio-side-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .portfolio-side-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      font-size: 0.83rem;
+      color: var(--muted);
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .portfolio-side-item:last-child {
+      border-bottom: none;
+    }
+
+    .portfolio-side-item strong {
+      color: var(--text);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* MÉTODO */
+
+    .method-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 28px;
+    }
+
+    .method-steps {
+      display: grid;
+      gap: 14px;
+    }
+
+    .step {
+      padding: 12px 14px;
+      border-radius: var(--radius-md);
+      background: rgba(10, 10, 16, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .step-number {
+      width: 22px;
+      height: 22px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .step-body-title {
+      font-size: 0.9rem;
+      margin-bottom: 2px;
+    }
+
+    .step-body-text {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .method-highlight {
+      background: radial-gradient(circle at top, #151521, #050509);
+      border-radius: var(--radius-lg);
+      padding: 18px 18px 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: var(--shadow-subtle);
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+
+    .method-highlight strong {
+      color: var(--text);
+    }
+
+    /* NOSOTROS */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 32px;
+    }
+
+    .about-text p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+      max-width: 34rem;
+    }
+
+    .about-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .about-card {
+      background: rgba(9, 9, 15, 0.96);
+      border-radius: var(--radius-lg);
+      padding: 18px 18px 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: var(--shadow-subtle);
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+
+    .about-stat-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 12px;
+      font-size: 0.86rem;
+    }
+
+    .about-stat {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .about-stat span:first-child {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* CONTACTO */
+
+    .contact {
+      background: radial-gradient(circle at bottom, #151521 0, #050509 55%);
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 26px;
+      align-items: flex-start;
+    }
+
+    .contact-lead {
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 28rem;
+      margin-bottom: 10px;
+    }
+
+    .contact-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .contact-badge {
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .contact-quick {
+      font-size: 0.86rem;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    .contact-quick a {
+      color: #f5f5f7;
+      text-decoration: underline;
+    }
+
+    .contact-form {
+      background: rgba(8, 8, 14, 0.95);
+      border-radius: var(--radius-lg);
+      padding: 18px 18px 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: var(--shadow-subtle);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px 16px;
+      margin-bottom: 10px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 0.8rem;
+    }
+
+    .form-group label {
+      color: var(--muted);
+    }
+
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-control,
+    .form-textarea {
+      background: rgba(4, 4, 8, 0.98);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 9px 10px;
+      color: var(--text);
+      font-size: 0.85rem;
+      outline: none;
+      transition: border 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      resize: vertical;
+      min-height: 44px;
+    }
+
+    .form-control:focus,
+    .form-textarea:focus {
+      border-color: rgba(255, 59, 48, 0.8);
+      box-shadow: 0 0 0 1px rgba(255, 59, 48, 0.6);
+      background: rgba(7, 7, 12, 0.98);
+    }
+
+    .form-hint {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .form-submit-row {
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .form-note {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* FOOTER */
+
+    .footer {
+      padding: 20px 0 26px;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 16px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-links a {
+      text-decoration: underline;
+      text-decoration-style: dotted;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-media {
+        order: -1;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .portfolio-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .method-grid,
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-links {
+        position: absolute;
+        inset: 72px 14px auto 14px;
+        background: rgba(5, 5, 9, 0.98);
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        padding: 14px 14px 10px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        transform-origin: top;
+        transform: scaleY(0.9);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.16s ease, transform 0.16s ease;
+      }
+
+      .nav-links.open {
+        opacity: 1;
+        pointer-events: auto;
+        transform: scaleY(1);
+      }
+
+      .nav-cta {
+        width: 100%;
+        justify-content: center;
+        margin-top: 4px;
+      }
+
+      .nav-toggle {
+        display: inline-flex;
+      }
+
+      .hero {
+        padding-top: 46px;
+      }
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .services-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .form-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-title {
+        font-size: 2.1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <!-- NAV -->
+    <header class="nav">
+      <div class="container nav-inner">
+        <a href="#inicio" class="logo">
+          <div class="logo-mark" aria-hidden="true"></div>
+          <span class="logo-text">Co-o creativo</span>
+        </a>
+
+        <nav class="nav-links" id="navLinks">
+          <a href="#servicios">Servicios</a>
+          <a href="#portafolio">Portafolio</a>
+          <a href="#metodo">Cómo trabajamos</a>
+          <a href="#nosotros">Nosotros</a>
+          <a href="#contacto" class="nav-cta">
+            <span class="nav-cta-dot"></span>
+            <span>Agenda un proyecto</span>
+          </a>
+        </nav>
+
+        <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks" id="navToggle">
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <main id="inicio">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="container hero-inner">
+          <div>
+            <div class="eyebrow">
+              <span class="eyebrow-dot"></span>
+              <span>Agencia audiovisual para marcas</span>
+            </div>
+
+            <h1 class="hero-title">
+              Foto y video para marcas que quieren contar
+              <span class="highlight">historias reales.</span>
+            </h1>
+
+            <p class="hero-subtitle">
+              Co-o creativo diseña y produce contenido audiovisual para marcas
+              en Colombia y Latinoamérica que quieren dejar atrás el stock y las
+              poses rígidas, y pasar a narrativas cercanas, honestas y memorables.
+            </p>
+
+            <div class="hero-cta-row">
+              <a href="#portafolio" class="btn btn-primary">
+                Ver portafolio
+                <span>▶︎</span>
+              </a>
+              <a href="#contacto" class="btn btn-outline">
+                Cuéntanos tu próximo proyecto
+              </a>
+            </div>
+
+            <div class="hero-meta">
+              <div class="hero-meta-item">
+                <span class="hero-meta-badge">Colombia · Latam</span>
+                <span>Producción de foto + video para campañas, lanzamientos y contenido digital.</span>
+              </div>
+            </div>
+          </div>
+
+          <aside class="hero-media" aria-label="Preview del trabajo de Co-o creativo">
+            <div class="hero-media-main">
+              <!-- AQUÍ PUEDES REEMPLAZAR ESTE DIV POR UNA IMAGEN O VIDEO -->
+              <div class="hero-media-placeholder"></div>
+              <div class="hero-media-pill">
+                <span class="hero-media-pill-dot"></span>
+                <span>Reel 2024 · 00:45</span>
+              </div>
+              <div class="hero-media-tag">
+                Muestra de proyectos seleccionados
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- SERVICIOS -->
+      <section id="servicios">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <div class="section-eyebrow">Servicios</div>
+              <h2 class="section-title">Lo que hacemos con cámara, luz y guión.</h2>
+            </div>
+            <div class="section-description">
+              Acompañamos todo el flujo: idea, preproducción, rodaje y entrega final
+              optimizada para donde realmente va a vivir tu contenido: redes, web,
+              pauta, presentaciones, lanzamientos internos y más.
+            </div>
+          </div>
+
+          <div class="services-grid">
+            <article class="service-card">
+              <div class="service-icon">🎥</div>
+              <h3 class="service-title">Producción de video</h3>
+              <p class="service-text">
+                Piezas audiovisuales para lanzamientos, campañas, storytelling de marca
+                y contenido ongoing para redes. Desde el guión hasta el último frame.
+              </p>
+              <div class="service-tag">
+                Brand films · campañas · redes · testimoniales
+              </div>
+            </article>
+
+            <article class="service-card">
+              <div class="service-icon">📷</div>
+              <h3 class="service-title">Fotografía para marcas</h3>
+              <p class="service-text">
+                Sesiones de foto para producto, lifestyle y retratos de equipo con
+                una estética coherente con tu identidad visual y tus canales.
+              </p>
+              <div class="service-tag">
+                Producto · lifestyle · retratos · eventos
+              </div>
+            </article>
+
+            <article class="service-card">
+              <div class="service-icon">✏️</div>
+              <h3 class="service-title">Dirección creativa & narrativa</h3>
+              <p class="service-text">
+                Bajamos la estrategia a historias concretas. Conceptos, guiones,
+                guías visuales y asesoría para que cada pieza tenga un “para qué” claro.
+              </p>
+              <div class="service-tag">
+                Conceptos · guiones · moodboards
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- PORTAFOLIO -->
+      <section id="portafolio" class="portfolio">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <div class="section-eyebrow">Portafolio</div>
+              <h2 class="section-title">Casos donde la imagen cuenta otra historia.</h2>
+            </div>
+            <div class="section-description">
+              Aquí puedes reemplazar los bloques por tus campañas reales. Usa cada
+              proyecto para contar el reto, la idea y el resultado, no solo mostrar la imagen.
+            </div>
+          </div>
+
+          <div class="portfolio-grid">
+            <!-- Proyecto principal -->
+            <article class="portfolio-main">
+              <div>
+                <div class="portfolio-label">Campaña · Video + Foto</div>
+                <h3 class="portfolio-title">Lanzamiento de colección para marca de moda</h3>
+              </div>
+
+              <div class="portfolio-thumb" aria-label="Placeholder de video de campaña">
+                <!-- Reemplaza este div por un thumbnail o embed de video -->
+                <div class="portfolio-thumb-inner"></div>
+              </div>
+
+              <p class="portfolio-text">
+                Una marca que quería dejar atrás el catálogo plano para contar la
+                historia de cómo se siente usar la ropa en la vida real. Diseñamos
+                concepto, plan de rodaje y piezas para redes, web y punto de venta.
+              </p>
+
+              <div class="portfolio-meta-row">
+                <span class="pill">+20 piezas para redes</span>
+                <span class="pill">3 días de rodaje</span>
+                <span class="pill">Contenido para 3 meses</span>
+              </div>
+
+              <a href="#" class="portfolio-link">
+                Ver proyecto completo
+                <span>↗</span>
+              </a>
+            </article>
+
+            <!-- Lateral -->
+            <aside class="portfolio-side-card">
+              <div>
+                <div class="portfolio-label">Selección</div>
+                <h3 class="portfolio-title">Otros proyectos recientes</h3>
+              </div>
+
+              <div class="portfolio-side-list">
+                <div class="portfolio-side-item">
+                  <div>
+                    <strong>Retratos de equipo para firma de servicios</strong>
+                    Fotografías naturales, sin poses rígidas, para web y LinkedIn.
+                  </div>
+                  <div>Foto</div>
+                </div>
+
+                <div class="portfolio-side-item">
+                  <div>
+                    <strong>Testimoniales en video para programa educativo</strong>
+                    Historias reales de estudiantes y docentes, con montaje ágil para redes.
+                  </div>
+                  <div>Video</div>
+                </div>
+
+                <div class="portfolio-side-item">
+                  <div>
+                    <strong>Contenido ongoing para marca de alimentación</strong>
+                    Banco de imágenes y clips cortos para campañas y pauta digital.
+                  </div>
+                  <div>Foto + video</div>
+                </div>
+              </div>
+
+              <p class="portfolio-text">
+                En la versión final, enlaza cada proyecto a su página dentro de tu
+                portafolio o a tus galerías en Adobe Portfolio / Vimeo / Instagram.
+              </p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- MÉTODO -->
+      <section id="metodo">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <div class="section-eyebrow">Cómo trabajamos</div>
+              <h2 class="section-title">Un proceso claro, sin drama en el rodaje.</h2>
+            </div>
+            <div class="section-description">
+              Nos conectamos con tu equipo de marketing y comunicación para
+              que el proyecto fluya: claridad en tiempos, entregables y formatos.
+            </div>
+          </div>
+
+          <div class="method-grid">
+            <div class="method-steps">
+              <div class="step">
+                <div class="step-number">1</div>
+                <div>
+                  <div class="step-body-title">Brief y dirección creativa</div>
+                  <div class="step-body-text">
+                    Entendemos tu marca, objetivo, audiencia y canales. A partir
+                    de eso proponemos conceptos, guiones y referencias visuales.
+                  </div>
+                </div>
+              </div>
+
+              <div class="step">
+                <div class="step-number">2</div>
+                <div>
+                  <div class="step-body-title">Preproducción</div>
+                  <div class="step-body-text">
+                    Definimos locaciones, talentos, arte, tiempos y logística para
+                    que el día de rodaje sea eficiente y sin improvisaciones innecesarias.
+                  </div>
+                </div>
+              </div>
+
+              <div class="step">
+                <div class="step-number">3</div>
+                <div>
+                  <div class="step-body-title">Rodaje & sesión de fotos</div>
+                  <div class="step-body-text">
+                    Ejecutamos el plan, cuidando luz, encuadre y ritmo. Acompañamos
+                    a tu equipo para asegurar que las piezas respondan a sus objetivos.
+                  </div>
+                </div>
+              </div>
+
+              <div class="step">
+                <div class="step-number">4</div>
+                <div>
+                  <div class="step-body-title">Edición, color y entrega</div>
+                  <div class="step-body-text">
+                    Montaje, sound design, corrección de color y exportación en
+                    los formatos que necesitas para cada plataforma.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="method-highlight">
+              <strong>Transparencia desde el día cero.</strong><br /><br />
+              Antes de rodar, tendrás claros el alcance, el número de piezas, los
+              formatos de entrega y los tiempos estimados. Así tu equipo puede
+              planear lanzamientos y campañas con tranquilidad.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NOSOTROS -->
+      <section id="nosotros">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <div class="section-eyebrow">Nosotros</div>
+              <h2 class="section-title">Co-o creativo, un equipo que mira distinto.</h2>
+            </div>
+            <div class="section-description">
+              Aquí puedes contar brevemente quiénes están detrás: perfiles, enfoque
+              y por qué su mirada es distinta a la de una productora genérica.
+            </div>
+          </div>
+
+          <div class="about-grid">
+            <div class="about-text">
+              <p>
+                Co-o creativo nace de la idea de acompañar a las marcas más allá
+                de la ejecución técnica. Nos importa el guión, la intención y la
+                experiencia del equipo que se pone frente a la cámara.
+              </p>
+              <p>
+                Trabajamos con marcas que valoran el largo plazo: construir un
+                universo visual coherente, reconocer a las personas detrás de la
+                marca y contar historias que conecten sin necesidad de gritar.
+              </p>
+
+              <div class="about-tags">
+                <span class="pill">Narrativa real</span>
+                <span class="pill">Mirada documental</span>
+                <span class="pill">Trabajo cercano con marketing</span>
+              </div>
+            </div>
+
+            <aside class="about-card">
+              <p>
+                <strong>Con quién trabajamos.</strong><br />
+                Marcas en Colombia y Latinoamérica que necesitan contenido
+                audiovisual constante para redes, web, lanzamientos y comunicaciones
+                internas, pero quieren que cada pieza tenga una historia clara detrás.
+              </p>
+
+              <div class="about-stat-row">
+                <div class="about-stat">
+                  <span>+X</span>
+                  <span>proyectos producidos</span>
+                </div>
+                <div class="about-stat">
+                  <span>+Y</span>
+                  <span>marcas acompañadas</span>
+                </div>
+                <div class="about-stat">
+                  <span>Latam</span>
+                  <span>Colombia · región</span>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACTO -->
+      <section id="contacto" class="contact">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <div class="section-eyebrow">Contacto</div>
+              <h2 class="section-title">Hablemos de tu próximo proyecto.</h2>
+            </div>
+            <div class="section-description">
+              Cuéntanos qué quieres lograr con tu contenido. No necesitas tener
+              todo definido: te ayudamos a bajar la idea a un plan concreto.
+            </div>
+          </div>
+
+          <div class="contact-grid">
+            <div>
+              <p class="contact-lead">
+                Completa el formulario o escríbenos directamente por correo o
+                WhatsApp. Podemos agendar una llamada corta para entender el
+                alcance y proponerte el mejor enfoque.
+              </p>
+
+              <div class="contact-badges">
+                <span class="contact-badge">Proyectos en Colombia y Latam</span>
+                <span class="contact-badge">Foto · Video · Dirección creativa</span>
+              </div>
+
+              <p class="contact-quick">
+                Correo: <a href="mailto:hola@co-ocreativo.com">hola@co-ocreativo.com</a><br />
+                (Reemplaza por el correo o medio que prefieras.)
+              </p>
+            </div>
+
+            <form class="contact-form">
+              <!--
+                IMPORTANTE:
+                - Si quieres que este formulario envíe a tu correo directo,
+                  deberás conectarlo con la herramienta que use Adobe Portfolio
+                  (o usar un servicio externo).
+                - Por ahora es solo la estructura visual.
+              -->
+
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="nombre">Nombre / Marca</label>
+                  <input class="form-control" type="text" id="nombre" name="nombre" placeholder="Nombre de contacto o marca" />
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Correo</label>
+                  <input class="form-control" type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com" />
+                </div>
+
+                <div class="form-group">
+                  <label for="tipo">Tipo de proyecto</label>
+                  <select class="form-control" id="tipo" name="tipo">
+                    <option value="">Selecciona una opción</option>
+                    <option value="video">Video</option>
+                    <option value="foto">Foto</option>
+                    <option value="foto-video">Foto + video</option>
+                    <option value="no-se">Aún no lo tengo claro</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="presupuesto">Rango de presupuesto (opcional)</label>
+                  <select class="form-control" id="presupuesto" name="presupuesto">
+                    <option value="">Prefiero hablarlo</option>
+                    <option value="1">Proyecto puntual</option>
+                    <option value="2">Contenido recurrente</option>
+                  </select>
+                </div>
+
+                <div class="form-group full">
+                  <label for="objetivo">¿Qué quieres lograr?</label>
+                  <textarea class="form-textarea" id="objetivo" name="objetivo" rows="4" placeholder="Ej: Lanzar una campaña, generar contenido constante para redes, retratos de equipo, etc."></textarea>
+                  <div class="form-hint">
+                    Mientras más contexto nos des, mejor podemos ayudarte a priorizar.
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-submit-row">
+                <button type="submit" class="btn btn-primary">
+                  Enviar formulario
+                </button>
+                <div class="form-note">
+                  Al enviar tu mensaje, nos autorizas a contactarte para hablar de tu proyecto.
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div>© <span id="year"></span> Co-o creativo. Todos los derechos reservados.</div>
+        <div class="footer-links">
+          <a href="#">Política de privacidad</a>
+          <a href="#">Política de cookies</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Año automático en el footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Toggle menú móvil
+    const navToggle = document.getElementById("navToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    navToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+
+    // Cerrar menú al hacer clic en un link (en móvil)
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        if (navLinks.classList.contains("open")) {
+          navLinks.classList.remove("open");
+          navToggle.setAttribute("aria-expanded", "false");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
