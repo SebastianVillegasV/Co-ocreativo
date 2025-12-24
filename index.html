@@ -38,7 +38,6 @@
     }
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
-
     .container{max-width:var(--max-width);margin:0 auto;padding:0 20px;width:100%}
 
     /* HEADER */
@@ -49,20 +48,14 @@
       border-bottom:1px solid rgba(63, 13, 44, 0.06);
     }
     .nav-inner{display:flex;align-items:center;justify-content:space-between;height:70px}
-    .logo{display:inline-flex;align-items:center;gap:12px;min-width:160px}
+    .logo{display:inline-flex;align-items:center;gap:12px}
     .brand-logo{
-      height:34px; /* MÁS GRANDE */
+      height:46px; /* MÁS GRANDE */
       width:auto;
       object-fit:contain;
       filter: drop-shadow(0 10px 26px rgba(0,0,0,0.22));
     }
-    .logo-text{
-      font-family:"Exo",system-ui,sans-serif;
-      font-size:.9rem;font-weight:600;
-      letter-spacing:.16em;text-transform:uppercase;
-      color:var(--text);
-      opacity:.9;
-    }
+
     .nav-links{display:flex;align-items:center;gap:22px;font-size:.9rem;color:var(--muted)}
     .nav-links a{position:relative;padding:4px 0;transition:color .16s ease}
     .nav-links a::after{
@@ -138,23 +131,29 @@
     .hero-meta{font-size:.82rem;color:var(--muted)}
     .hero-dot{width:8px;height:8px;border-radius:999px;background:var(--accent-soft);margin-right:6px;display:inline-block}
 
+    /* HERO MEDIA (SIN BORDE BLANCO, ESQUINAS RECTAS) */
     .hero-media{
-      border-radius:var(--radius-lg);
-      background:var(--card-bg);
-      border:1px solid var(--border-subtle);
-      padding:18px;box-shadow:var(--shadow-soft)
+      border-radius:0;
+      background:transparent;
+      border:0;
+      padding:0;
+      box-shadow:none;
     }
     .hero-media-inner{
-      border-radius:20px;background:#111;height:280px;position:relative;overflow:hidden;
-      display:flex;align-items:center;justify-content:center
+      border-radius:0;             /* puntas rectas */
+      background:#111;
+      position:relative;
+      overflow:hidden;
+      aspect-ratio:16/9;
+      width:100%;
     }
-    .hero-media-inner img{width:100%;height:100%;object-fit:cover;opacity:.94;transform:scale(1.02)}
-    .hero-badge{
-      position:absolute;left:16px;bottom:16px;padding:8px 14px;border-radius:var(--radius-pill);
-      background:rgba(245,222,216,.96);border:1px solid rgba(63,13,44,.22);
-      font-size:.78rem;color:var(--muted);display:inline-flex;align-items:center;gap:8px;
+    .hero-reel{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      border:0;
     }
-    .hero-badge-dot{width:7px;height:7px;border-radius:999px;background:var(--accent)}
 
     /* CLIENT LOGOS */
     .clients{
@@ -170,20 +169,20 @@
     }
     .logos{
       display:grid;
-      grid-template-columns:repeat(7, minmax(0,1fr)); /* 14 logos = 2 filas */
+      grid-template-columns:repeat(7, minmax(0,1fr));
       gap:12px;
     }
     .logo-box{
       border:1px solid rgba(63,13,44,.10);
       background:rgba(255,255,255,.85);
       border-radius:14px;
-      height:64px;              /* MÁS ALTO */
-      padding:12px 18px;        /* MÁS AIRE */
+      height:64px;
+      padding:12px 18px;
       display:flex;align-items:center;justify-content:center;
       overflow:hidden;
     }
     .logo-box img{
-      height:30px;              /* TAMAÑO REAL CONSISTENTE */
+      height:30px;
       width:auto;
       max-width:100%;
       object-fit:contain;
@@ -354,7 +353,6 @@
       .about-grid,.contact-grid{grid-template-columns:minmax(0,1fr)}
     }
     @media (max-width: 720px){
-      .logo-text{display:none}
       .nav-links{
         position:absolute;inset:70px 16px auto 16px;
         background:rgba(245,222,216,.98);
@@ -370,7 +368,7 @@
       .section-header{flex-direction:column;align-items:flex-start}
       .hero-title{font-size:2.2rem}
       .logos{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .brand-logo{height:28px}
+      .brand-logo{height:40px}
       .logo-box{height:58px}
       .logo-box img{height:26px}
       .lightbox-stage{aspect-ratio:4/3}
@@ -382,9 +380,9 @@
 <body>
   <header class="site-header">
     <div class="container nav-inner">
+      <!-- Logo SOLO, sin texto -->
       <a href="#inicio" class="logo" aria-label="Ir al inicio">
         <img class="brand-logo" src="assets/projects/Logo_Co-o/1_Logo_co-o_principal.png" alt="Co-o creativo">
-        <span class="logo-text">CO-O CREATIVO</span>
       </a>
 
       <nav class="nav-links" id="navLinks">
@@ -431,13 +429,17 @@
           </div>
         </div>
 
-        <aside class="hero-media" aria-label="Muestra de trabajo">
+        <!-- Reel autoplay (mute) + sin badge + sin borde blanco + puntas rectas -->
+        <aside class="hero-media" aria-label="Reel Co-o creativo">
           <div class="hero-media-inner">
-            <img src="assets/projects/Tigre_JPG/Tigre-1.jpg" alt="Muestra de Co-o creativo" loading="lazy" decoding="async">
-            <div class="hero-badge">
-              <span class="hero-badge-dot"></span>
-              <span>Frames & fotografía</span>
-            </div>
+            <iframe
+              class="hero-reel"
+              src="https://www.youtube.com/embed/kokPRT2amM0?autoplay=1&mute=1&playsinline=1&loop=1&playlist=kokPRT2amM0&controls=0&modestbranding=1&rel=0"
+              title="Reel Co-o creativo"
+              frameborder="0"
+              allow="autoplay; encrypted-media; picture-in-picture"
+              allowfullscreen>
+            </iframe>
           </div>
         </aside>
       </div>
