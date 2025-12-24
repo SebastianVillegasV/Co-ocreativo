@@ -50,7 +50,7 @@
     .nav-inner{display:flex;align-items:center;justify-content:space-between;height:70px}
     .logo{display:inline-flex;align-items:center;gap:12px}
     .brand-logo{
-      height:46px; /* MÁS GRANDE */
+      height:46px;
       width:auto;
       object-fit:contain;
       filter: drop-shadow(0 10px 26px rgba(0,0,0,0.22));
@@ -131,7 +131,7 @@
     .hero-meta{font-size:.82rem;color:var(--muted)}
     .hero-dot{width:8px;height:8px;border-radius:999px;background:var(--accent-soft);margin-right:6px;display:inline-block}
 
-    /* HERO MEDIA (SIN BORDE BLANCO, ESQUINAS RECTAS) */
+    /* HERO MEDIA (recto, sin borde blanco) */
     .hero-media{
       border-radius:0;
       background:transparent;
@@ -140,7 +140,7 @@
       box-shadow:none;
     }
     .hero-media-inner{
-      border-radius:0;             /* puntas rectas */
+      border-radius:0;
       background:#111;
       position:relative;
       overflow:hidden;
@@ -188,7 +188,7 @@
       object-fit:contain;
       filter: grayscale(100%);
       opacity:.78;
-      transition:opacity .2s ease, transform .2s ease;
+      transition:opacity .2s ease, transform .2s ease, filter .2s ease;
     }
     .logo-box:hover img{opacity:1;transform:translateY(-1px);filter:grayscale(0%)}
 
@@ -227,7 +227,6 @@
     .project-title{font-family:"Exo",system-ui,sans-serif;font-size:.98rem;letter-spacing:-.02em}
     .project-meta{font-size:.8rem;color:var(--muted)}
     .project-logline{font-size:.82rem;color:var(--muted);margin-top:4px}
-
     .project-card:hover,.project-card:focus-visible{
       transform:translateY(-4px);
       box-shadow:var(--shadow-soft);
@@ -289,6 +288,27 @@
       color:var(--text);
       background:rgba(245,222,216,.7)
     }
+
+    /* LEGAL (Privacidad / Cookies) */
+    .legal{background:#fff}
+    .legal-card{
+      background:rgba(245,222,216,.55);
+      border:1px solid rgba(63,13,44,.10);
+      border-radius:24px;
+      padding:18px 18px 20px;
+      color:var(--muted);
+    }
+    .legal-card h3{
+      font-family:"Exo",system-ui,sans-serif;
+      color:var(--text);
+      font-size:1rem;
+      margin-top:14px;
+      margin-bottom:6px;
+    }
+    .legal-card h3:first-child{margin-top:0}
+    .legal-card p{font-size:.9rem}
+    .legal-card a{color:var(--accent);text-decoration:underline}
+    .legal-note{margin-top:12px;font-size:.82rem;opacity:.9}
 
     /* FOOTER */
     .footer{padding:18px 0 26px;font-size:.78rem;color:var(--muted);background:#fff}
@@ -735,14 +755,99 @@
         </div>
       </div>
     </section>
+
+    <!-- POLÍTICA DE PRIVACIDAD -->
+    <section id="privacidad" class="legal">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-eyebrow">LEGAL</div>
+            <h2 class="section-title">Política de privacidad</h2>
+          </div>
+          <p class="section-description">Texto simple para un sitio portafolio.</p>
+        </div>
+
+        <div class="legal-card">
+          <h3>Qué datos recopilamos</h3>
+          <p>
+            En este sitio no solicitamos datos sensibles. Solo podríamos recibir la información que tú decidas
+            enviarnos por correo o WhatsApp (por ejemplo: nombre, empresa, brief y fechas).
+          </p>
+
+          <h3>Para qué los usamos</h3>
+          <p>
+            Usamos esos datos únicamente para responder tu solicitud, cotizar, coordinar una reunión o dar seguimiento
+            a un proyecto audiovisual.
+          </p>
+
+          <h3>Con quién los compartimos</h3>
+          <p>
+            No vendemos datos. Solo podríamos compartir información con proveedores técnicos indispensables
+            (por ejemplo: hosting del sitio o plataformas de video) cuando sea necesario para operar el servicio.
+          </p>
+
+          <h3>Cómo contactarnos</h3>
+          <p>
+            Si quieres actualizar o eliminar la información que nos enviaste, escríbenos a
+            <a href="mailto:maria@co-ocreativo.com">maria@co-ocreativo.com</a>.
+          </p>
+
+          <p class="legal-note">
+            Nota: si incrustamos videos de YouTube u otras plataformas, esas plataformas pueden usar sus propias cookies.
+            Consulta la política de cookies más abajo.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- POLÍTICA DE COOKIES -->
+    <section id="cookies" class="legal">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-eyebrow">LEGAL</div>
+            <h2 class="section-title">Política de cookies</h2>
+          </div>
+          <p class="section-description">Qué cookies pueden aparecer en este sitio y por qué.</p>
+        </div>
+
+        <div class="legal-card">
+          <h3>Qué son las cookies</h3>
+          <p>
+            Las cookies son pequeños archivos que ayudan a recordar preferencias o medir el uso de un sitio.
+          </p>
+
+          <h3>Cookies propias</h3>
+          <p>
+            Este sitio (portafolio estático) no necesita cookies propias para funcionar.
+          </p>
+
+          <h3>Cookies de terceros</h3>
+          <p>
+            Si ves contenido incrustado (por ejemplo, videos de YouTube), el proveedor del contenido
+            puede establecer cookies y recopilar datos de uso según sus políticas.
+          </p>
+
+          <h3>Cómo controlarlas</h3>
+          <p>
+            Puedes borrar o bloquear cookies desde la configuración de tu navegador. Ten en cuenta que algunos
+            contenidos incrustados podrían no reproducirse igual si bloqueas cookies de terceros.
+          </p>
+
+          <p class="legal-note">
+            Si más adelante activamos analítica o un banner de consentimiento, esta sección se actualizará.
+          </p>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="footer">
     <div class="container footer-inner">
-      <div>© <span id="year"></span> Co-o Creativo S.A.S.</div>
+      <div>© <span id="year"></span> Co-o creativo.</div>
       <div class="footer-links">
-        <a href="#">Política de privacidad</a>
-        <a href="#">Política de cookies</a>
+        <a href="#privacidad">Política de privacidad</a>
+        <a href="#cookies">Política de cookies</a>
       </div>
     </div>
   </footer>
