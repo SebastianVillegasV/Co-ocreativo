@@ -25,6 +25,9 @@
       --radius-pill:999px;
       --shadow-soft:0 26px 70px rgba(0,0,0,0.18);
       --max-width:1120px;
+
+      /* ✅ Header/Logo más grandes */
+      --header-h:104px;
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
@@ -47,10 +50,12 @@
       background:rgba(245,222,216,.94);
       border-bottom:1px solid rgba(63, 13, 44, 0.06);
     }
-    .nav-inner{display:flex;align-items:center;justify-content:space-between;height:70px}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;height:var(--header-h)}
     .logo{display:inline-flex;align-items:center;gap:12px}
+
+    /* ✅ Logo al doble */
     .brand-logo{
-      height:46px;
+      height:92px;
       width:auto;
       object-fit:contain;
       filter: drop-shadow(0 10px 26px rgba(0,0,0,0.22));
@@ -65,16 +70,21 @@
     }
     .nav-links a:hover{color:var(--text)}
     .nav-links a:hover::after{width:100%}
+
+    /* ✅ Más holgura al CTA del header */
     .nav-cta{
-      padding:6px 14px;border-radius:var(--radius-pill);
+      padding:10px 18px;
+      border-radius:var(--radius-pill);
       border:1px solid rgba(63,13,44,.18);
       background:rgba(255,255,255,.7);
-      display:inline-flex;align-items:center;gap:8px;
-      font-size:.82rem;font-weight:500;color:var(--text);
+      display:inline-flex;align-items:center;gap:10px;
+      font-size:.86rem;font-weight:600;color:var(--text);
+      min-height:44px;
     }
     .nav-cta-dot{width:7px;height:7px;border-radius:999px;background:#30d158;box-shadow:0 0 12px rgba(48,209,88,.7)}
+
     .nav-toggle{
-      display:none;width:32px;height:32px;border-radius:999px;
+      display:none;width:36px;height:36px;border-radius:999px;
       border:1px solid rgba(63,13,44,.2);
       background:rgba(245,222,216,.96);
       align-items:center;justify-content:center;cursor:pointer;
@@ -97,8 +107,15 @@
     .section-description{font-size:.9rem;color:var(--muted);max-width:420px}
 
     /* HERO */
-    .hero{padding:80px 0 72px}
-    .hero-inner{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:40px;align-items:center}
+    .hero{padding:72px 0 72px}
+
+    /* ✅ Más separación entre texto y reel */
+    .hero-inner{
+      display:grid;
+      grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
+      gap:76px;
+      align-items:center
+    }
     .hero-eyebrow{
       font-family:"Exo",system-ui,sans-serif;font-size:.74rem;text-transform:uppercase;
       letter-spacing:.18em;color:var(--muted);margin-bottom:14px
@@ -114,7 +131,7 @@
     .btn{
       display:inline-flex;align-items:center;justify-content:center;gap:8px;
       padding:12px 22px;border-radius:var(--radius-pill);
-      border:none;font-size:.92rem;font-weight:500;cursor:pointer;
+      border:none;font-size:.92rem;font-weight:600;cursor:pointer;
       transition:transform .1s ease, box-shadow .18s ease, background .18s ease;
     }
     .btn-primary{
@@ -132,28 +149,11 @@
     .hero-dot{width:8px;height:8px;border-radius:999px;background:var(--accent-soft);margin-right:6px;display:inline-block}
 
     /* HERO MEDIA (recto, sin borde blanco) */
-    .hero-media{
-      border-radius:0;
-      background:transparent;
-      border:0;
-      padding:0;
-      box-shadow:none;
-    }
+    .hero-media{border-radius:0;background:transparent;border:0;padding:0;box-shadow:none}
     .hero-media-inner{
-      border-radius:0;
-      background:#111;
-      position:relative;
-      overflow:hidden;
-      aspect-ratio:16/9;
-      width:100%;
+      border-radius:0;background:#111;position:relative;overflow:hidden;aspect-ratio:16/9;width:100%;
     }
-    .hero-reel{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      border:0;
-    }
+    .hero-reel{position:absolute;inset:0;width:100%;height:100%;border:0}
 
     /* CLIENT LOGOS */
     .clients{
@@ -182,12 +182,8 @@
       overflow:hidden;
     }
     .logo-box img{
-      height:30px;
-      width:auto;
-      max-width:100%;
-      object-fit:contain;
-      filter: grayscale(100%);
-      opacity:.78;
+      height:30px;width:auto;max-width:100%;object-fit:contain;
+      filter: grayscale(100%);opacity:.78;
       transition:opacity .2s ease, transform .2s ease, filter .2s ease;
     }
     .logo-box:hover img{opacity:1;transform:translateY(-1px);filter:grayscale(0%)}
@@ -289,32 +285,16 @@
       background:rgba(245,222,216,.7)
     }
 
-    /* LEGAL (Privacidad / Cookies) */
-    .legal{background:#fff}
-    .legal-card{
-      background:rgba(245,222,216,.55);
-      border:1px solid rgba(63,13,44,.10);
-      border-radius:24px;
-      padding:18px 18px 20px;
-      color:var(--muted);
-    }
-    .legal-card h3{
-      font-family:"Exo",system-ui,sans-serif;
-      color:var(--text);
-      font-size:1rem;
-      margin-top:14px;
-      margin-bottom:6px;
-    }
-    .legal-card h3:first-child{margin-top:0}
-    .legal-card p{font-size:.9rem}
-    .legal-card a{color:var(--accent);text-decoration:underline}
-    .legal-note{margin-top:12px;font-size:.82rem;opacity:.9}
-
     /* FOOTER */
     .footer{padding:18px 0 26px;font-size:.78rem;color:var(--muted);background:#fff}
     .footer-inner{border-top:1px solid rgba(63,13,44,.12);padding-top:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     .footer-links{display:flex;flex-wrap:wrap;gap:10px}
-    .footer-links a{text-decoration:underline;text-decoration-style:dotted}
+    .footer-links button{
+      appearance:none;background:transparent;border:0;padding:0;
+      color:inherit;cursor:pointer;
+      text-decoration:underline;text-decoration-style:dotted;
+      font:inherit;
+    }
 
     /* LIGHTBOX */
     .lightbox{position:fixed;inset:0;z-index:200;display:none}
@@ -362,19 +342,102 @@
     .lightbox-thumb img{width:100%;height:100%;object-fit:cover}
     .lightbox-thumb.active{opacity:1;transform:translateY(-1px);border-color:rgba(255,255,255,.34)}
 
+    /* LEGAL MODAL (POPUP) + ✅ Tabs */
+    .legal-modal{position:fixed;inset:0;z-index:260;display:none}
+    .legal-modal.open{display:block}
+    .legal-backdrop{
+      position:absolute;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(10px);
+    }
+    .legal-panel{
+      position:relative;
+      width:min(920px, calc(100vw - 24px));
+      margin:10vh auto;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.92);
+      box-shadow:0 40px 120px rgba(0,0,0,.45);
+      overflow:hidden;
+    }
+    .legal-head{
+      display:flex;align-items:flex-start;justify-content:space-between;gap:12px;
+      padding:16px 16px 12px;
+      border-bottom:1px solid rgba(63,13,44,.10);
+      background:rgba(245,222,216,.85);
+    }
+    .legal-head-left{min-width:0}
+    .legal-title{
+      font-family:"Exo",system-ui,sans-serif;
+      font-size:1.05rem;letter-spacing:-.02em;
+      color:var(--text);
+    }
+    .legal-sub{margin-top:4px;font-size:.85rem;color:var(--muted)}
+    .legal-tabs{
+      margin-top:10px;
+      display:inline-flex;
+      gap:6px;
+      padding:6px;
+      border-radius:999px;
+      border:1px solid rgba(63,13,44,.14);
+      background:rgba(255,255,255,.55);
+    }
+    .legal-tab{
+      appearance:none;border:0;cursor:pointer;
+      padding:8px 12px;border-radius:999px;
+      font:inherit;font-size:.86rem;font-weight:700;
+      color:var(--muted);
+      background:transparent;
+      transition:background .16s ease, color .16s ease, transform .12s ease;
+    }
+    .legal-tab:hover{transform:translateY(-1px)}
+    .legal-tab.active{
+      color:var(--text);
+      background:rgba(255,255,255,.9);
+      box-shadow:0 16px 40px rgba(0,0,0,.12);
+    }
+    .legal-close{
+      width:40px;height:40px;border-radius:999px;
+      border:1px solid rgba(63,13,44,.20);
+      background:rgba(255,255,255,.6);
+      color:var(--text);
+      cursor:pointer;
+      display:inline-flex;align-items:center;justify-content:center;
+      font-size:20px;
+      flex:0 0 auto;
+    }
+    .legal-close:hover{background:#fff}
+    .legal-body{
+      padding:16px;
+      max-height:60vh;
+      overflow:auto;
+      color:var(--muted);
+    }
+    .legal-body h3{
+      font-family:"Exo",system-ui,sans-serif;
+      color:var(--text);
+      font-size:1rem;
+      margin-top:14px;
+      margin-bottom:6px;
+    }
+    .legal-body h3:first-child{margin-top:0}
+    .legal-body p{font-size:.92rem}
+    .legal-body a{color:var(--accent);text-decoration:underline}
+    .legal-note{margin-top:12px;font-size:.84rem;opacity:.95}
+
     /* RESPONSIVE */
     @media (max-width: 1100px){
       .logos{grid-template-columns:repeat(6, minmax(0,1fr));}
     }
     @media (max-width: 900px){
-      .hero-inner{grid-template-columns:minmax(0,1fr)}
+      .hero-inner{grid-template-columns:minmax(0,1fr);gap:30px}
       .logos{grid-template-columns:repeat(3,minmax(0,1fr))}
       .work-grid{grid-template-columns:minmax(0,1fr)}
       .about-grid,.contact-grid{grid-template-columns:minmax(0,1fr)}
     }
     @media (max-width: 720px){
+      :root{ --header-h:92px; }
+
       .nav-links{
-        position:absolute;inset:70px 16px auto 16px;
+        position:absolute;inset:var(--header-h) 16px auto 16px;
         background:rgba(245,222,216,.98);
         border-radius:18px;border:1px solid rgba(63,13,44,.16);
         padding:12px 14px 10px;flex-direction:column;align-items:flex-start;gap:10px;
@@ -384,15 +447,22 @@
       .nav-links.open{opacity:1;pointer-events:auto;transform:scaleY(1)}
       .nav-cta{width:100%;justify-content:center}
       .nav-toggle{display:inline-flex}
-      .hero{padding-top:52px}
+
+      .hero{padding-top:44px}
       .section-header{flex-direction:column;align-items:flex-start}
-      .hero-title{font-size:2.2rem}
+
+      /* Logo grande pero usable en móvil */
+      .brand-logo{height:64px}
+
       .logos{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .brand-logo{height:40px}
       .logo-box{height:58px}
       .logo-box img{height:26px}
+
       .lightbox-stage{aspect-ratio:4/3}
       .lightbox-thumb{width:72px;height:48px}
+
+      .legal-panel{margin:8vh auto}
+      .legal-body{max-height:66vh}
     }
   </style>
 </head>
@@ -400,7 +470,6 @@
 <body>
   <header class="site-header">
     <div class="container nav-inner">
-      <!-- Logo SOLO, sin texto -->
       <a href="#inicio" class="logo" aria-label="Ir al inicio">
         <img class="brand-logo" src="assets/projects/Logo_Co-o/1_Logo_co-o_principal.png" alt="Co-o creativo">
       </a>
@@ -449,7 +518,7 @@
           </div>
         </div>
 
-        <!-- Reel autoplay (mute) + sin badge + sin borde blanco + puntas rectas -->
+        <!-- Reel autoplay (mute) + sin badge + puntas rectas -->
         <aside class="hero-media" aria-label="Reel Co-o creativo">
           <div class="hero-media-inner">
             <iframe
@@ -494,9 +563,7 @@
     <section id="work" class="work">
       <div class="container">
         <div class="section-header">
-          <div>
-            <h2 class="section-title">Proyectos en foto y video.</h2>
-          </div>
+          <div><h2 class="section-title">Proyectos en foto y video.</h2></div>
           <p class="section-description">Abre cada proyecto para ver su galería completa o el video.</p>
         </div>
 
@@ -755,99 +822,14 @@
         </div>
       </div>
     </section>
-
-    <!-- POLÍTICA DE PRIVACIDAD -->
-    <section id="privacidad" class="legal">
-      <div class="container">
-        <div class="section-header">
-          <div>
-            <div class="section-eyebrow">LEGAL</div>
-            <h2 class="section-title">Política de privacidad</h2>
-          </div>
-          <p class="section-description">Texto simple para un sitio portafolio.</p>
-        </div>
-
-        <div class="legal-card">
-          <h3>Qué datos recopilamos</h3>
-          <p>
-            En este sitio no solicitamos datos sensibles. Solo podríamos recibir la información que tú decidas
-            enviarnos por correo o WhatsApp (por ejemplo: nombre, empresa, brief y fechas).
-          </p>
-
-          <h3>Para qué los usamos</h3>
-          <p>
-            Usamos esos datos únicamente para responder tu solicitud, cotizar, coordinar una reunión o dar seguimiento
-            a un proyecto audiovisual.
-          </p>
-
-          <h3>Con quién los compartimos</h3>
-          <p>
-            No vendemos datos. Solo podríamos compartir información con proveedores técnicos indispensables
-            (por ejemplo: hosting del sitio o plataformas de video) cuando sea necesario para operar el servicio.
-          </p>
-
-          <h3>Cómo contactarnos</h3>
-          <p>
-            Si quieres actualizar o eliminar la información que nos enviaste, escríbenos a
-            <a href="mailto:maria@co-ocreativo.com">maria@co-ocreativo.com</a>.
-          </p>
-
-          <p class="legal-note">
-            Nota: si incrustamos videos de YouTube u otras plataformas, esas plataformas pueden usar sus propias cookies.
-            Consulta la política de cookies más abajo.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- POLÍTICA DE COOKIES -->
-    <section id="cookies" class="legal">
-      <div class="container">
-        <div class="section-header">
-          <div>
-            <div class="section-eyebrow">LEGAL</div>
-            <h2 class="section-title">Política de cookies</h2>
-          </div>
-          <p class="section-description">Qué cookies pueden aparecer en este sitio y por qué.</p>
-        </div>
-
-        <div class="legal-card">
-          <h3>Qué son las cookies</h3>
-          <p>
-            Las cookies son pequeños archivos que ayudan a recordar preferencias o medir el uso de un sitio.
-          </p>
-
-          <h3>Cookies propias</h3>
-          <p>
-            Este sitio (portafolio estático) no necesita cookies propias para funcionar.
-          </p>
-
-          <h3>Cookies de terceros</h3>
-          <p>
-            Si ves contenido incrustado (por ejemplo, videos de YouTube), el proveedor del contenido
-            puede establecer cookies y recopilar datos de uso según sus políticas.
-          </p>
-
-          <h3>Cómo controlarlas</h3>
-          <p>
-            Puedes borrar o bloquear cookies desde la configuración de tu navegador. Ten en cuenta que algunos
-            contenidos incrustados podrían no reproducirse igual si bloqueas cookies de terceros.
-          </p>
-
-          <p class="legal-note">
-            Si más adelante activamos analítica o un banner de consentimiento, esta sección se actualizará.
-          </p>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer class="footer">
     <div class="container footer-inner">
       <div>© <span id="year"></span> Co-o creativo.</div>
       <div class="footer-links">
-        <a href="#privacidad">Política de privacidad</a>
-        <a href="#cookies">Política de cookies</a>
+        <button type="button" data-legal-open="privacy">Política de privacidad</button>
+        <button type="button" data-legal-open="cookies">Política de cookies</button>
       </div>
     </div>
   </footer>
@@ -883,6 +865,30 @@
       </div>
 
       <div class="lightbox-thumbs" id="lightboxThumbs"></div>
+    </div>
+  </div>
+
+  <!-- LEGAL MODAL (POPUP) -->
+  <div class="legal-modal" id="legalModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="legal-backdrop" id="legalBackdrop"></div>
+
+    <div class="legal-panel" role="document" aria-labelledby="legalTitle">
+      <div class="legal-head">
+        <div class="legal-head-left">
+          <div class="legal-title" id="legalTitle">Políticas</div>
+          <div class="legal-sub" id="legalSub">Privacidad y cookies</div>
+
+          <!-- ✅ Tabs -->
+          <div class="legal-tabs" role="tablist" aria-label="Políticas">
+            <button class="legal-tab" id="tabPrivacy" type="button" role="tab" aria-selected="true" data-legal-tab="privacy">Privacidad</button>
+            <button class="legal-tab" id="tabCookies" type="button" role="tab" aria-selected="false" data-legal-tab="cookies">Cookies</button>
+          </div>
+        </div>
+
+        <button class="legal-close" id="legalClose" aria-label="Cerrar">✕</button>
+      </div>
+
+      <div class="legal-body" id="legalBody"></div>
     </div>
   </div>
 
@@ -1036,6 +1042,119 @@
         if (e.key === "ArrowRight") setImage(currentIndex + 1);
       }
     });
+
+    // ===== LEGAL MODAL con TABS =====
+    const legalModal = document.getElementById("legalModal");
+    const legalBackdrop = document.getElementById("legalBackdrop");
+    const legalClose = document.getElementById("legalClose");
+    const legalBody = document.getElementById("legalBody");
+
+    const tabPrivacy = document.getElementById("tabPrivacy");
+    const tabCookies = document.getElementById("tabCookies");
+    const legalTabs = [tabPrivacy, tabCookies];
+
+    let lastFocusLegal = null;
+
+    const legalTemplates = {
+      privacy: `
+        <h3>Qué datos recopilamos</h3>
+        <p>
+          En este sitio no solicitamos datos sensibles. Solo podríamos recibir la información que tú decidas
+          enviarnos por correo o WhatsApp (por ejemplo: nombre, empresa, brief y fechas).
+        </p>
+
+        <h3>Para qué los usamos</h3>
+        <p>
+          Usamos esos datos únicamente para responder tu solicitud, cotizar, coordinar una reunión o dar seguimiento
+          a un proyecto audiovisual.
+        </p>
+
+        <h3>Con quién los compartimos</h3>
+        <p>
+          No vendemos datos. Solo podríamos compartir información con proveedores técnicos indispensables
+          (por ejemplo: hosting del sitio o plataformas de video) cuando sea necesario para operar el servicio.
+        </p>
+
+        <h3>Cómo contactarnos</h3>
+        <p>
+          Si quieres actualizar o eliminar la información que nos enviaste, escríbenos a
+          <a href="mailto:maria@co-ocreativo.com">maria@co-ocreativo.com</a>.
+        </p>
+
+        <p class="legal-note">
+          Nota: Si incrustamos videos de YouTube u otras plataformas, esas plataformas pueden usar sus propias cookies.
+        </p>
+      `,
+      cookies: `
+        <h3>Qué son las cookies</h3>
+        <p>Las cookies son pequeños archivos que ayudan a recordar preferencias o medir el uso de un sitio.</p>
+
+        <h3>Cookies propias</h3>
+        <p>Este sitio (portafolio estático) no necesita cookies propias para funcionar.</p>
+
+        <h3>Cookies de terceros</h3>
+        <p>
+          Si ves contenido incrustado (por ejemplo, videos de YouTube), el proveedor del contenido
+          puede establecer cookies y recopilar datos de uso según sus políticas.
+        </p>
+
+        <h3>Cómo controlarlas</h3>
+        <p>
+          Puedes borrar o bloquear cookies desde la configuración de tu navegador. Ten en cuenta que algunos
+          contenidos incrustados podrían no reproducirse igual si bloqueas cookies de terceros.
+        </p>
+
+        <p class="legal-note">
+          Si más adelante activamos analítica (por ejemplo, Google Analytics) o un banner de consentimiento,
+          esta sección se actualizará.
+        </p>
+      `
+    };
+
+    function setLegalTab(which){
+      legalTabs.forEach(btn => {
+        const active = btn.getAttribute("data-legal-tab") === which;
+        btn.classList.toggle("active", active);
+        btn.setAttribute("aria-selected", active ? "true" : "false");
+      });
+      legalBody.innerHTML = legalTemplates[which] || "";
+    }
+
+    function openLegal(which){
+      lastFocusLegal = document.activeElement;
+      setLegalTab(which || "privacy");
+
+      legalModal.classList.add("open");
+      legalModal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      (which === "cookies" ? tabCookies : tabPrivacy).focus();
+    }
+
+    function closeLegal(){
+      legalModal.classList.remove("open");
+      legalModal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      if (lastFocusLegal) lastFocusLegal.focus();
+    }
+
+    document.querySelectorAll("[data-legal-open]").forEach(btn=>{
+      btn.addEventListener("click", ()=> openLegal(btn.getAttribute("data-legal-open")));
+    });
+
+    document.querySelectorAll("[data-legal-tab]").forEach(btn=>{
+      btn.addEventListener("click", ()=> setLegalTab(btn.getAttribute("data-legal-tab")));
+    });
+
+    legalBackdrop.addEventListener("click", closeLegal);
+    legalClose.addEventListener("click", closeLegal);
+
+    window.addEventListener("keydown", (e)=>{
+      if (!legalModal.classList.contains("open")) return;
+      if (e.key === "Escape") closeLegal();
+    });
+
+    // Estado inicial tabs
+    setLegalTab("privacy");
   </script>
 </body>
 </html>
