@@ -26,7 +26,6 @@
       --shadow-soft:0 26px 70px rgba(0,0,0,0.18);
       --max-width:1120px;
 
-      /* ✅ Header/Logo más grandes */
       --header-h:104px;
     }
 
@@ -53,7 +52,7 @@
     .nav-inner{display:flex;align-items:center;justify-content:space-between;height:var(--header-h)}
     .logo{display:inline-flex;align-items:center;gap:12px}
 
-    /* ✅ Logo al doble */
+    /* Logo grande (x2 aprox) */
     .brand-logo{
       height:92px;
       width:auto;
@@ -61,8 +60,16 @@
       filter: drop-shadow(0 10px 26px rgba(0,0,0,0.22));
     }
 
-    .nav-links{display:flex;align-items:center;gap:22px;font-size:.9rem;color:var(--muted)}
-    .nav-links a{position:relative;padding:4px 0;transition:color .16s ease}
+    .nav-right{display:flex;align-items:center;gap:14px}
+
+    .nav-links{display:flex;align-items:center;gap:22px;font-size:.92rem;color:var(--muted)}
+    .nav-links a{
+      position:relative;
+      padding:4px 0;
+      transition:color .16s ease;
+      font-family:"Exo",system-ui,sans-serif;
+      font-weight:700; /* ✅ Trabajos + Nosotros en bold */
+    }
     .nav-links a::after{
       content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;border-radius:999px;
       background:linear-gradient(90deg,var(--accent-soft),var(--accent));
@@ -71,17 +78,47 @@
     .nav-links a:hover{color:var(--text)}
     .nav-links a:hover::after{width:100%}
 
-    /* ✅ Más holgura al CTA del header */
+    /* CTA en header */
     .nav-cta{
-      padding:10px 18px;
+      padding:12px 30px;              /* ✅ más holgura lateral */
       border-radius:var(--radius-pill);
       border:1px solid rgba(63,13,44,.18);
-      background:rgba(255,255,255,.7);
+      background:rgba(255,255,255,.72);
       display:inline-flex;align-items:center;gap:10px;
-      font-size:.86rem;font-weight:600;color:var(--text);
-      min-height:44px;
+      font-size:.9rem;font-weight:700;color:var(--text);
+      min-height:46px;
+      line-height:1.1;
+      white-space:nowrap;              /* ✅ evita que se pise */
     }
+    .nav-cta::after{display:none}      /* para que no herede underline */
     .nav-cta-dot{width:7px;height:7px;border-radius:999px;background:#30d158;box-shadow:0 0 12px rgba(48,209,88,.7)}
+
+    /* Switch idioma */
+    .lang-switch{
+      display:inline-flex;
+      border:1px solid rgba(63,13,44,.16);
+      background:rgba(255,255,255,.55);
+      border-radius:999px;
+      padding:5px;
+      gap:6px;
+    }
+    .lang-btn{
+      appearance:none;border:0;cursor:pointer;
+      padding:8px 12px;
+      border-radius:999px;
+      font-family:"Exo",system-ui,sans-serif;
+      font-weight:800;
+      font-size:.78rem;
+      color:var(--muted);
+      background:transparent;
+      transition:background .16s ease, color .16s ease, transform .12s ease;
+    }
+    .lang-btn:hover{transform:translateY(-1px)}
+    .lang-btn.active{
+      color:var(--text);
+      background:rgba(255,255,255,.92);
+      box-shadow:0 16px 40px rgba(0,0,0,.12);
+    }
 
     .nav-toggle{
       display:none;width:36px;height:36px;border-radius:999px;
@@ -109,7 +146,7 @@
     /* HERO */
     .hero{padding:72px 0 72px}
 
-    /* ✅ Más separación entre texto y reel */
+    /* ✅ más separación texto vs reel */
     .hero-inner{
       display:grid;
       grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
@@ -131,7 +168,7 @@
     .btn{
       display:inline-flex;align-items:center;justify-content:center;gap:8px;
       padding:12px 22px;border-radius:var(--radius-pill);
-      border:none;font-size:.92rem;font-weight:600;cursor:pointer;
+      border:none;font-size:.92rem;font-weight:700;cursor:pointer;
       transition:transform .1s ease, box-shadow .18s ease, background .18s ease;
     }
     .btn-primary{
@@ -140,7 +177,7 @@
     }
     .btn-primary:hover{transform:translateY(-1px);box-shadow:0 30px 80px rgba(0,0,0,.28)}
     .btn-ghost{
-      background:rgba(255,255,255,.7);
+      background:rgba(255,255,255,.72);
       color:var(--text);
       border:1px solid rgba(63,13,44,.2)
     }
@@ -228,933 +265,4 @@
       box-shadow:var(--shadow-soft);
       border-color:rgba(63,13,44,.18)
     }
-    .project-card:hover .project-media img,.project-card:focus-visible .project-media img{transform:scale(1.06)}
-
-    /* NOSOTROS */
-    .about{background:radial-gradient(circle at bottom,#fff 0,#F5DED8 52%)}
-    .about-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.9fr);gap:30px}
-    .about-text p{font-size:.9rem;color:var(--muted);margin-bottom:10px;max-width:36rem}
-    .tag-list{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
-    .tag-pill{
-      padding:4px 10px;border-radius:var(--radius-pill);
-      border:1px solid var(--border-subtle);
-      font-size:.8rem;color:var(--muted);
-      background:rgba(255,255,255,.8)
-    }
-    .about-card{
-      background:var(--card-bg);
-      border-radius:var(--radius-lg);
-      border:1px solid var(--border-subtle);
-      padding:18px 18px 20px;
-      box-shadow:var(--shadow-soft);
-      font-size:.86rem;color:var(--muted)
-    }
-    .about-card strong{color:var(--text)}
-    .about-stats{display:flex;flex-wrap:wrap;gap:14px;margin-top:12px;font-size:.84rem}
-    .about-stat span:first-child{display:block;font-size:1.1rem;font-weight:700;color:var(--text)}
-
-    /* CONTACTO */
-    .contact{border-top:1px solid rgba(63,13,44,.08);background:#fff}
-    .contact-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:24px;align-items:flex-start}
-    .contact-lead{font-size:.9rem;color:var(--muted);max-width:34rem;margin-bottom:10px}
-    .contact-highlights{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
-    .contact-pill{
-      padding:4px 10px;border-radius:var(--radius-pill);
-      border:1px solid var(--border-subtle);
-      font-size:.8rem;color:var(--muted);
-      background:rgba(245,222,216,.7)
-    }
-    .contact-direct{margin-top:10px;font-size:.86rem;color:var(--muted)}
-    .contact-direct a{color:var(--accent);text-decoration:underline}
-    .contact-card{
-      background:var(--card-bg);
-      border-radius:var(--radius-lg);
-      border:1px solid var(--border-subtle);
-      padding:18px 18px 20px;
-      box-shadow:var(--shadow-soft);
-      font-size:.84rem;color:var(--muted)
-    }
-    .contact-note{margin-top:10px;font-size:.78rem;color:var(--muted)}
-    .contact-links{margin-top:12px;display:flex;flex-wrap:wrap;gap:10px}
-    .contact-link-chip{
-      padding:6px 12px;border-radius:var(--radius-pill);
-      border:1px solid var(--border-subtle);
-      font-size:.8rem;
-      display:inline-flex;align-items:center;gap:8px;
-      color:var(--text);
-      background:rgba(245,222,216,.7)
-    }
-
-    /* FOOTER */
-    .footer{padding:18px 0 26px;font-size:.78rem;color:var(--muted);background:#fff}
-    .footer-inner{border-top:1px solid rgba(63,13,44,.12);padding-top:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
-    .footer-links{display:flex;flex-wrap:wrap;gap:10px}
-    .footer-links button{
-      appearance:none;background:transparent;border:0;padding:0;
-      color:inherit;cursor:pointer;
-      text-decoration:underline;text-decoration-style:dotted;
-      font:inherit;
-    }
-
-    /* LIGHTBOX */
-    .lightbox{position:fixed;inset:0;z-index:200;display:none}
-    .lightbox.open{display:block}
-    .lightbox-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.62);backdrop-filter:blur(10px)}
-    .lightbox-panel{
-      position:relative;width:min(1080px, calc(100vw - 24px));
-      margin:12px auto;border-radius:22px;border:1px solid rgba(255,255,255,.14);
-      background:rgba(20,10,16,.90);box-shadow:0 40px 120px rgba(0,0,0,.55);
-      overflow:hidden
-    }
-    .lightbox-head{
-      display:flex;align-items:flex-start;justify-content:space-between;gap:14px;
-      padding:16px 16px 10px;border-bottom:1px solid rgba(255,255,255,.10)
-    }
-    .lightbox-title{font-family:"Exo",system-ui,sans-serif;font-size:1.05rem;letter-spacing:-.02em;color:rgba(255,255,255,.92)}
-    .lightbox-meta{margin-top:4px;font-size:.86rem;color:rgba(255,255,255,.68)}
-    .lightbox-close{
-      width:40px;height:40px;border-radius:999px;border:1px solid rgba(255,255,255,.18);
-      background:rgba(255,255,255,.06);color:rgba(255,255,255,.92);
-      cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:20px
-    }
-    .lightbox-close:hover{background:rgba(255,255,255,.10)}
-    .lightbox-stage{position:relative;aspect-ratio:16/9;background:#000;display:flex;align-items:center;justify-content:center}
-    .lightbox-stage img{width:100%;height:100%;object-fit:contain;background:#000}
-    .lightbox-video{width:100%;height:100%;border:0}
-    .lightbox-nav{
-      position:absolute;top:50%;transform:translateY(-50%);
-      width:42px;height:42px;border-radius:999px;border:1px solid rgba(255,255,255,.18);
-      background:rgba(255,255,255,.06);color:rgba(255,255,255,.92);
-      cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:20px
-    }
-    .lightbox-nav:hover{background:rgba(255,255,255,.10)}
-    .lightbox-nav.prev{left:12px}
-    .lightbox-nav.next{right:12px}
-    .lightbox-thumbs{
-      display:flex;gap:10px;padding:12px 12px 14px;overflow:auto;
-      border-top:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.03)
-    }
-    .lightbox-thumb{
-      flex:0 0 auto;width:84px;height:56px;border-radius:12px;border:1px solid rgba(255,255,255,.14);
-      overflow:hidden;background:#111;cursor:pointer;opacity:.72;
-      transition:opacity .15s ease, transform .15s ease, border-color .15s ease;
-    }
-    .lightbox-thumb img{width:100%;height:100%;object-fit:cover}
-    .lightbox-thumb.active{opacity:1;transform:translateY(-1px);border-color:rgba(255,255,255,.34)}
-
-    /* LEGAL MODAL (POPUP) + ✅ Tabs */
-    .legal-modal{position:fixed;inset:0;z-index:260;display:none}
-    .legal-modal.open{display:block}
-    .legal-backdrop{
-      position:absolute;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(10px);
-    }
-    .legal-panel{
-      position:relative;
-      width:min(920px, calc(100vw - 24px));
-      margin:10vh auto;
-      border-radius:22px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.92);
-      box-shadow:0 40px 120px rgba(0,0,0,.45);
-      overflow:hidden;
-    }
-    .legal-head{
-      display:flex;align-items:flex-start;justify-content:space-between;gap:12px;
-      padding:16px 16px 12px;
-      border-bottom:1px solid rgba(63,13,44,.10);
-      background:rgba(245,222,216,.85);
-    }
-    .legal-head-left{min-width:0}
-    .legal-title{
-      font-family:"Exo",system-ui,sans-serif;
-      font-size:1.05rem;letter-spacing:-.02em;
-      color:var(--text);
-    }
-    .legal-sub{margin-top:4px;font-size:.85rem;color:var(--muted)}
-    .legal-tabs{
-      margin-top:10px;
-      display:inline-flex;
-      gap:6px;
-      padding:6px;
-      border-radius:999px;
-      border:1px solid rgba(63,13,44,.14);
-      background:rgba(255,255,255,.55);
-    }
-    .legal-tab{
-      appearance:none;border:0;cursor:pointer;
-      padding:8px 12px;border-radius:999px;
-      font:inherit;font-size:.86rem;font-weight:700;
-      color:var(--muted);
-      background:transparent;
-      transition:background .16s ease, color .16s ease, transform .12s ease;
-    }
-    .legal-tab:hover{transform:translateY(-1px)}
-    .legal-tab.active{
-      color:var(--text);
-      background:rgba(255,255,255,.9);
-      box-shadow:0 16px 40px rgba(0,0,0,.12);
-    }
-    .legal-close{
-      width:40px;height:40px;border-radius:999px;
-      border:1px solid rgba(63,13,44,.20);
-      background:rgba(255,255,255,.6);
-      color:var(--text);
-      cursor:pointer;
-      display:inline-flex;align-items:center;justify-content:center;
-      font-size:20px;
-      flex:0 0 auto;
-    }
-    .legal-close:hover{background:#fff}
-    .legal-body{
-      padding:16px;
-      max-height:60vh;
-      overflow:auto;
-      color:var(--muted);
-    }
-    .legal-body h3{
-      font-family:"Exo",system-ui,sans-serif;
-      color:var(--text);
-      font-size:1rem;
-      margin-top:14px;
-      margin-bottom:6px;
-    }
-    .legal-body h3:first-child{margin-top:0}
-    .legal-body p{font-size:.92rem}
-    .legal-body a{color:var(--accent);text-decoration:underline}
-    .legal-note{margin-top:12px;font-size:.84rem;opacity:.95}
-
-    /* RESPONSIVE */
-    @media (max-width: 1100px){
-      .logos{grid-template-columns:repeat(6, minmax(0,1fr));}
-    }
-    @media (max-width: 900px){
-      .hero-inner{grid-template-columns:minmax(0,1fr);gap:30px}
-      .logos{grid-template-columns:repeat(3,minmax(0,1fr))}
-      .work-grid{grid-template-columns:minmax(0,1fr)}
-      .about-grid,.contact-grid{grid-template-columns:minmax(0,1fr)}
-    }
-    @media (max-width: 720px){
-      :root{ --header-h:92px; }
-
-      .nav-links{
-        position:absolute;inset:var(--header-h) 16px auto 16px;
-        background:rgba(245,222,216,.98);
-        border-radius:18px;border:1px solid rgba(63,13,44,.16);
-        padding:12px 14px 10px;flex-direction:column;align-items:flex-start;gap:10px;
-        transform-origin:top;transform:scaleY(.9);opacity:0;pointer-events:none;
-        transition:opacity .16s ease, transform .16s ease;
-      }
-      .nav-links.open{opacity:1;pointer-events:auto;transform:scaleY(1)}
-      .nav-cta{width:100%;justify-content:center}
-      .nav-toggle{display:inline-flex}
-
-      .hero{padding-top:44px}
-      .section-header{flex-direction:column;align-items:flex-start}
-
-      /* Logo grande pero usable en móvil */
-      .brand-logo{height:64px}
-
-      .logos{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .logo-box{height:58px}
-      .logo-box img{height:26px}
-
-      .lightbox-stage{aspect-ratio:4/3}
-      .lightbox-thumb{width:72px;height:48px}
-
-      .legal-panel{margin:8vh auto}
-      .legal-body{max-height:66vh}
-    }
-  </style>
-</head>
-
-<body>
-  <header class="site-header">
-    <div class="container nav-inner">
-      <a href="#inicio" class="logo" aria-label="Ir al inicio">
-        <img class="brand-logo" src="assets/projects/Logo_Co-o/1_Logo_co-o_principal.png" alt="Co-o creativo">
-      </a>
-
-      <nav class="nav-links" id="navLinks">
-        <a href="#work">Trabajos</a>
-        <a href="#about">Nosotros</a>
-        <a href="#info" class="nav-cta">
-          <span class="nav-cta-dot"></span>
-          <span>Proponer un proyecto</span>
-        </a>
-      </nav>
-
-      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">
-        <span></span>
-      </button>
-    </div>
-  </header>
-
-  <main id="inicio">
-    <!-- HERO -->
-    <section class="hero">
-      <div class="container hero-inner">
-        <div>
-          <div class="hero-eyebrow">PROYECTOS AUDIOVISUALES EN COLOMBIA Y LATINOAMÉRICA</div>
-
-          <h1 class="hero-title">
-            Fotografía y video para clientes, empresas y marcas que buscan
-            <span>narrativas originales.</span>
-          </h1>
-
-          <p class="hero-subtitle">
-            Co-o creativo es una productora audiovisual que diseña y produce imágenes y narrativas
-            para marcas, programas y productos que quieren contar historias reales:
-            <br><strong>Menos poses, más realismo mágico.</strong>
-          </p>
-
-          <div class="hero-actions">
-            <a href="#work" class="btn btn-primary">Ver trabajos seleccionados</a>
-            <a href="#info" class="btn btn-ghost">Cuéntanos tu próximo proyecto</a>
-          </div>
-
-          <div class="hero-meta">
-            <span class="hero-dot"></span>
-            Proyectos en foto y video para campañas, lanzamientos y contenido continuo.
-          </div>
-        </div>
-
-        <!-- Reel autoplay (mute) + sin badge + puntas rectas -->
-        <aside class="hero-media" aria-label="Reel Co-o creativo">
-          <div class="hero-media-inner">
-            <iframe
-              class="hero-reel"
-              src="https://www.youtube.com/embed/kokPRT2amM0?autoplay=1&mute=1&playsinline=1&loop=1&playlist=kokPRT2amM0&controls=0&modestbranding=1&rel=0"
-              title="Reel Co-o creativo"
-              frameborder="0"
-              allow="autoplay; encrypted-media; picture-in-picture"
-              allowfullscreen>
-            </iframe>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <!-- CLIENTES -->
-    <section class="clients">
-      <div class="container clients-inner">
-        <div class="clients-title">Algunos clientes</div>
-
-        <div class="logos">
-          <div class="logo-box"><img src="assets/projects/Logos_Clientes_SVG/Logo-1-01.svg" alt="Cliente" loading="lazy"></div>
-          <div class="logo-box"><img src="assets/projects/Logos_Clientes_SVG/Logo-1-02.svg" alt="Cliente" loading="lazy"></div>
-          <div class="logo-box"><img src="assets/projects/Logos_Clientes_SVG/Logo-1-03.svg" alt="Cliente" loading="lazy"></div>
-          <div class="logo-box"><img src="assets/projects/Logos_Clientes_SVG/Logo-1-04.svg" alt="Cliente" loading="lazy"></div>
-          <div class="logo-box"><img src="assets/projects/Logos_Clientes_SVG/Logo-1-05.svg" alt="Cliente" loading="lazy"></div>
-          <div class="logo-box"><img src="assets/projects/Logos_Clientes_SVG/Logo-1-06.svg" alt="Cliente" loading="lazy"></div>
-          <div class="logo-box"><img src="assets/projects/Logos_Clientes_SVG/Logo-1-07.svg" alt="Cliente" loading="lazy"></div>
-
-          <div class="logo-box"><img src="assets/projects/Logos_Clientes_SVG/Logo-1-08.svg" alt="Cliente" loading="lazy"></div>
-          <div class="logo-box"><img src="assets/projects/Logos_Clientes_SVG/Logo-1-09.svg" alt="Cliente" loading="lazy"></div>
-          <div class="logo-box"><img src="assets/projects/Logos_Clientes_SVG/Logo-1-10.svg" alt="Cliente" loading="lazy"></div>
-          <div class="logo-box"><img src="assets/projects/Logos_Clientes_SVG/Logo-1-11.svg" alt="Cliente" loading="lazy"></div>
-          <div class="logo-box"><img src="assets/projects/Logos_Clientes_SVG/Logo-1-12.svg" alt="Cliente" loading="lazy"></div>
-          <div class="logo-box"><img src="assets/projects/Logos_Clientes_SVG/Logo-1-13.svg" alt="Cliente" loading="lazy"></div>
-          <div class="logo-box"><img src="assets/projects/Logos_Clientes_SVG/Logo-1-14.svg" alt="Cliente" loading="lazy"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TRABAJOS -->
-    <section id="work" class="work">
-      <div class="container">
-        <div class="section-header">
-          <div><h2 class="section-title">Proyectos en foto y video.</h2></div>
-          <p class="section-description">Abre cada proyecto para ver su galería completa o el video.</p>
-        </div>
-
-        <div class="work-grid">
-          <!-- VIDEO: Finest -->
-          <article class="project-card" tabindex="0"
-            data-lightbox="1"
-            data-type="video"
-            data-title="Finest Call Bartender"
-            data-meta="Campaña · 2021 · Video comercial"
-            data-video="https://youtu.be/WVlG8AY4Hlw">
-            <div class="project-media">
-              <span class="project-chip">Video</span>
-              <img src="assets/projects/Eventos_JPG/Eventos-1.jpg" alt="Finest Call Bartender" loading="lazy" decoding="async">
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">Finest Call Bartender</h3>
-              <div class="project-meta">Campaña · 2021 · Lanzamiento colección</div>
-              <p class="project-logline">
-                Pasamos del catálogo rígido y del producto en estantería a escenas con movimiento,
-                a la acción de un bartender y de un boxeador, contenido web y punto de venta.
-              </p>
-            </div>
-          </article>
-
-          <!-- VIDEO: Real Coco -->
-          <article class="project-card" tabindex="0"
-            data-lightbox="1"
-            data-type="video"
-            data-title="Real Coco"
-            data-meta="Propuesta comercial · Lanzamiento"
-            data-video="https://youtu.be/EmOAYnjjqTc">
-            <div class="project-media">
-              <span class="project-chip">Video</span>
-              <img src="assets/projects/Eventos_JPG/Eventos-2.jpg" alt="Real Coco" loading="lazy" decoding="async">
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">Real Coco</h3>
-              <div class="project-meta">Propuesta comercial · Lanzamiento</div>
-              <p class="project-logline">Propuesta comercial de lanzamiento Real Coco.</p>
-            </div>
-          </article>
-
-          <!-- FOTO: Eventos -->
-          <article class="project-card" tabindex="0"
-            data-lightbox="1"
-            data-type="gallery"
-            data-title="Foto reportajes (eventos)"
-            data-meta="Fotografía · Colombia · Diferentes clientes"
-            data-images='[
-              "assets/projects/Eventos_JPG/Eventos-1.jpg",
-              "assets/projects/Eventos_JPG/Eventos-2.jpg",
-              "assets/projects/Eventos_JPG/Eventos-3.jpg",
-              "assets/projects/Eventos_JPG/Eventos-4.jpg",
-              "assets/projects/Eventos_JPG/Eventos-5.jpg",
-              "assets/projects/Eventos_JPG/Eventos-6.jpg",
-              "assets/projects/Eventos_JPG/Eventos-7.jpg",
-              "assets/projects/Eventos_JPG/Eventos-8.jpg",
-              "assets/projects/Eventos_JPG/Eventos-9.jpg",
-              "assets/projects/Eventos_JPG/Eventos-10.jpg",
-              "assets/projects/Eventos_JPG/Eventos-11.jpg",
-              "assets/projects/Eventos_JPG/Eventos-12.jpg",
-              "assets/projects/Eventos_JPG/Eventos-13.jpg",
-              "assets/projects/Eventos_JPG/Eventos-14.jpg",
-              "assets/projects/Eventos_JPG/Eventos-15.jpg"
-            ]'>
-            <div class="project-media">
-              <span class="project-chip">Foto</span>
-              <img src="assets/projects/Eventos_JPG/Eventos-1.jpg" alt="Foto reportajes (eventos)" loading="lazy" decoding="async">
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">Foto reportajes (eventos)</h3>
-              <div class="project-meta">Fotografía · Colombia · Diferentes clientes</div>
-              <p class="project-logline">
-                Foto reportajes de diferentes eventos alrededor del país, diferentes clientes,
-                mismo objetivo: contar con imágenes la mejor historia.
-              </p>
-            </div>
-          </article>
-
-          <!-- FOTO: Retratos -->
-          <article class="project-card" tabindex="0"
-            data-lightbox="1"
-            data-type="gallery"
-            data-title="Retratos corporativos"
-            data-meta="Web empresariales · LinkedIn"
-            data-images='[
-              "assets/projects/Retratos_JPG/Retratos-1.jpg",
-              "assets/projects/Retratos_JPG/Retratos-2.jpg",
-              "assets/projects/Retratos_JPG/Retratos-3.jpg",
-              "assets/projects/Retratos_JPG/Retratos-4.jpg",
-              "assets/projects/Retratos_JPG/Retratos-5.jpg",
-              "assets/projects/Retratos_JPG/Retratos-6.jpg",
-              "assets/projects/Retratos_JPG/Retratos-7.jpg",
-              "assets/projects/Retratos_JPG/Retratos-8.jpg"
-            ]'>
-            <div class="project-media">
-              <span class="project-chip">Foto</span>
-              <img src="assets/projects/Retratos_JPG/Retratos-1.jpg" alt="Retratos corporativos" loading="lazy" decoding="async">
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">Retratos corporativos</h3>
-              <div class="project-meta">Web empresariales · LinkedIn</div>
-              <p class="project-logline">
-                Retratos naturales, sin poses forzadas, para construir un banco de imágenes coherente con la identidad de la firma.
-              </p>
-            </div>
-          </article>
-
-          <!-- VIDEO: Trapiche -->
-          <article class="project-card" tabindex="0"
-            data-lightbox="1"
-            data-type="video"
-            data-title="Trapiche Argentina"
-            data-meta="Video comercial · PdV y redes"
-            data-video="https://youtu.be/XKACm94Yy6M">
-            <div class="project-media">
-              <span class="project-chip">Video</span>
-              <img src="assets/projects/Tigre_JPG/Tigre-2.jpg" alt="Trapiche Argentina" loading="lazy" decoding="async">
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">Trapiche Argentina</h3>
-              <div class="project-meta">Video comercial · PdV y redes</div>
-              <p class="project-logline">Trapiche Argentina, video comercial para proyectar en PdV y en redes.</p>
-            </div>
-          </article>
-
-          <!-- FOTO: Tigre -->
-          <article class="project-card" tabindex="0"
-            data-lightbox="1"
-            data-type="gallery"
-            data-title="Tigre de Salón"
-            data-meta="Fotografía documental"
-            data-images='[
-              "assets/projects/Tigre_JPG/Tigre-1.jpg",
-              "assets/projects/Tigre_JPG/Tigre-2.jpg",
-              "assets/projects/Tigre_JPG/Tigre-3.jpg",
-              "assets/projects/Tigre_JPG/Tigre-4.jpg",
-              "assets/projects/Tigre_JPG/Tigre-5.jpg",
-              "assets/projects/Tigre_JPG/Tigre-6.jpg",
-              "assets/projects/Tigre_JPG/Tigre-7.jpg",
-              "assets/projects/Tigre_JPG/Tigre-8.jpg",
-              "assets/projects/Tigre_JPG/Tigre-9.jpg",
-              "assets/projects/Tigre_JPG/Tigre-10.jpg",
-              "assets/projects/Tigre_JPG/Tigre-11.jpg",
-              "assets/projects/Tigre_JPG/Tigre-12.jpg",
-              "assets/projects/Tigre_JPG/Tigre-13.jpg",
-              "assets/projects/Tigre_JPG/Tigre-14.jpg",
-              "assets/projects/Tigre_JPG/Tigre-15.jpg"
-            ]'>
-            <div class="project-media">
-              <span class="project-chip">Foto</span>
-              <img src="assets/projects/Tigre_JPG/Tigre-1.jpg" alt="Tigre de Salón" loading="lazy" decoding="async">
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">Tigre de Salón</h3>
-              <div class="project-meta">Fotografía documental</div>
-              <p class="project-logline">Tigre de Salón, fotografía documental. De la Sierra Nevada a la mochila.</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- NOSOTROS -->
-    <section id="about" class="about">
-      <div class="container">
-        <div class="section-header">
-          <div>
-            <div class="section-eyebrow">NOSOTROS</div>
-            <h2 class="section-title">Co-o creativo, un estudio que mira desde varias ópticas.</h2>
-          </div>
-        </div>
-
-        <div class="about-grid">
-          <div class="about-text">
-            <p>
-              Co-o creativo, un estudio que mira desde varias ópticas, miramos con el propósito de acompañar a las marcas
-              más allá de la ejecución técnica. Nos importa el guión, la intención y el impacto.
-            </p>
-            <p>
-              Colaboramos con marcas, programas y proyectos que valoran el largo plazo: construir un universo visual coherente,
-              reconocer a las personas detrás y contar historias que conecten sin necesidad de que sea más ruido.
-            </p>
-
-            <div class="tag-list">
-              <span class="tag-pill">Narrativas profundas</span>
-              <span class="tag-pill">Mirada documental</span>
-              <span class="tag-pill">Trabajo de impacto</span>
-            </div>
-          </div>
-
-          <aside class="about-card">
-            <p>
-              <strong>Con quién trabajamos.</strong><br><br>
-              Marcas en Colombia y Latinoamérica que necesitan contenido audiovisual constante para redes, web, lanzamientos
-              y comunicaciones internas, y prefieren construir un lenguaje visual propio en lugar de usar imágenes genéricas.
-            </p>
-
-            <div class="about-stats">
-              <div class="about-stat"><span>+200</span><span>proyectos producidos</span></div>
-              <div class="about-stat"><span>+50</span><span>marcas acompañadas</span></div>
-              <div class="about-stat"><span>Lugar base</span><span>Medellín, Colombia</span></div>
-            </div>
-          </aside>
-        </div>
-      </div>
-    </section>
-
-    <!-- INFO Y CONTACTO -->
-    <section id="info" class="contact">
-      <div class="container">
-        <div class="section-header">
-          <div>
-            <div class="section-eyebrow">INFO Y CONTACTO</div>
-            <h2 class="section-title">Hablemos de tu próximo proyecto.</h2>
-          </div>
-        </div>
-
-        <div class="contact-grid">
-          <div>
-            <p class="contact-lead">
-              Cuéntanos qué quieres lograr con tu contenido: un lanzamiento, una campaña, un banco de imágenes para redes,
-              retratos de equipo o un servicio de consultoría. Podemos partir de una conversación corta y construir el plan juntos.
-            </p>
-
-            <div class="contact-highlights">
-              <span class="contact-pill">Proyectos en Colombia y Latinoamérica</span>
-              <span class="contact-pill">Foto • Video • Consultoría visual</span>
-            </div>
-
-            <p class="contact-direct">
-              Escríbenos a<br>
-              <a href="mailto:maria@co-ocreativo.com">maria@co-ocreativo.com</a>
-            </p>
-          </div>
-
-          <aside class="contact-card">
-            <p>
-              Puedes compartirnos:<br><br>
-              • Nombre de la marca o proyecto<br>
-              • ¡Qué quieres lograr!<br>
-              • Tipo de pieza que imaginas (si ya lo tienes claro)<br>
-              • Tiempos estimados o fechas clave
-            </p>
-
-            <p class="contact-note">
-              A partir de eso podemos proponer formato, enfoque y tipo de piezas que mejor se adapten a tu equipo y a tus canales.
-            </p>
-
-            <div class="contact-links">
-              <a class="contact-link-chip" href="mailto:maria@co-ocreativo.com">✉️ Escribir un correo</a>
-              <a class="contact-link-chip" href="https://wa.me/573212712271" target="_blank" rel="noopener">💬 Hablar por WhatsApp</a>
-            </div>
-          </aside>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container footer-inner">
-      <div>© <span id="year"></span> Co-o creativo.</div>
-      <div class="footer-links">
-        <button type="button" data-legal-open="privacy">Política de privacidad</button>
-        <button type="button" data-legal-open="cookies">Política de cookies</button>
-      </div>
-    </div>
-  </footer>
-
-  <!-- LIGHTBOX -->
-  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true">
-    <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
-
-    <div class="lightbox-panel" role="document">
-      <div class="lightbox-head">
-        <div>
-          <div class="lightbox-title" id="lightboxTitle"></div>
-          <div class="lightbox-meta" id="lightboxMeta"></div>
-        </div>
-        <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar">✕</button>
-      </div>
-
-      <div class="lightbox-stage">
-        <button class="lightbox-nav prev" id="lightboxPrev" aria-label="Anterior">‹</button>
-
-        <img id="lightboxImage" alt="" hidden>
-
-        <iframe
-          id="lightboxIframe"
-          class="lightbox-video"
-          title="Video"
-          allow="autoplay; fullscreen; picture-in-picture"
-          allowfullscreen
-          hidden
-        ></iframe>
-
-        <button class="lightbox-nav next" id="lightboxNext" aria-label="Siguiente">›</button>
-      </div>
-
-      <div class="lightbox-thumbs" id="lightboxThumbs"></div>
-    </div>
-  </div>
-
-  <!-- LEGAL MODAL (POPUP) -->
-  <div class="legal-modal" id="legalModal" aria-hidden="true" role="dialog" aria-modal="true">
-    <div class="legal-backdrop" id="legalBackdrop"></div>
-
-    <div class="legal-panel" role="document" aria-labelledby="legalTitle">
-      <div class="legal-head">
-        <div class="legal-head-left">
-          <div class="legal-title" id="legalTitle">Políticas</div>
-          <div class="legal-sub" id="legalSub">Privacidad y cookies</div>
-
-          <!-- ✅ Tabs -->
-          <div class="legal-tabs" role="tablist" aria-label="Políticas">
-            <button class="legal-tab" id="tabPrivacy" type="button" role="tab" aria-selected="true" data-legal-tab="privacy">Privacidad</button>
-            <button class="legal-tab" id="tabCookies" type="button" role="tab" aria-selected="false" data-legal-tab="cookies">Cookies</button>
-          </div>
-        </div>
-
-        <button class="legal-close" id="legalClose" aria-label="Cerrar">✕</button>
-      </div>
-
-      <div class="legal-body" id="legalBody"></div>
-    </div>
-  </div>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Menú móvil
-    const navToggle = document.getElementById("navToggle");
-    const navLinks = document.getElementById("navLinks");
-    navToggle?.addEventListener("click", () => {
-      const isOpen = navLinks.classList.toggle("open");
-      navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
-    });
-    navLinks?.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        if (navLinks.classList.contains("open")) {
-          navLinks.classList.remove("open");
-          navToggle.setAttribute("aria-expanded", "false");
-        }
-      });
-    });
-
-    // ===== LIGHTBOX =====
-    const lb = document.getElementById("lightbox");
-    const lbBackdrop = document.getElementById("lightboxBackdrop");
-    const lbClose = document.getElementById("lightboxClose");
-    const lbTitle = document.getElementById("lightboxTitle");
-    const lbMeta = document.getElementById("lightboxMeta");
-    const lbImage = document.getElementById("lightboxImage");
-    const lbIframe = document.getElementById("lightboxIframe");
-    const lbPrev = document.getElementById("lightboxPrev");
-    const lbNext = document.getElementById("lightboxNext");
-    const lbThumbs = document.getElementById("lightboxThumbs");
-
-    let currentImages = [];
-    let currentIndex = 0;
-    let currentType = "gallery";
-    let lastFocusEl = null;
-
-    function openLightbox({ title, meta, type, images, videoUrl }) {
-      lastFocusEl = document.activeElement;
-
-      currentType = type || "gallery";
-      lbTitle.textContent = title || "";
-      lbMeta.textContent = meta || "";
-
-      lbThumbs.innerHTML = "";
-      lbImage.hidden = true;
-      lbIframe.hidden = true;
-      lbIframe.src = "";
-
-      if (currentType === "video") {
-        lbPrev.hidden = true;
-        lbNext.hidden = true;
-        lbThumbs.style.display = "none";
-        lbIframe.hidden = false;
-        lbIframe.src = toEmbedUrl(videoUrl || "");
-      } else {
-        currentImages = (images || []).filter(Boolean);
-        currentIndex = 0;
-
-        lbThumbs.style.display = "flex";
-        lbPrev.hidden = currentImages.length <= 1;
-        lbNext.hidden = currentImages.length <= 1;
-
-        lbImage.hidden = false;
-        setImage(0);
-        buildThumbs();
-      }
-
-      lb.classList.add("open");
-      lb.setAttribute("aria-hidden", "false");
-      document.body.style.overflow = "hidden";
-      lbClose.focus();
-    }
-
-    function closeLightbox() {
-      lb.classList.remove("open");
-      lb.setAttribute("aria-hidden", "true");
-      document.body.style.overflow = "";
-      lbIframe.src = "";
-      if (lastFocusEl) lastFocusEl.focus();
-    }
-
-    function setImage(index) {
-      if (!currentImages.length) return;
-      currentIndex = (index + currentImages.length) % currentImages.length;
-
-      lbImage.src = currentImages[currentIndex];
-      lbImage.alt = lbTitle.textContent ? `${lbTitle.textContent} — ${currentIndex + 1}` : `Imagen ${currentIndex + 1}`;
-
-      const thumbs = lbThumbs.querySelectorAll(".lightbox-thumb");
-      thumbs.forEach((t, i) => t.classList.toggle("active", i === currentIndex));
-    }
-
-    function buildThumbs() {
-      lbThumbs.innerHTML = "";
-      currentImages.forEach((src, i) => {
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = "lightbox-thumb" + (i === 0 ? " active" : "");
-        btn.setAttribute("aria-label", `Ver imagen ${i + 1}`);
-        btn.innerHTML = `<img src="${src}" alt="" loading="lazy" decoding="async">`;
-        btn.addEventListener("click", () => setImage(i));
-        lbThumbs.appendChild(btn);
-      });
-    }
-
-    function toEmbedUrl(url) {
-      if (!url) return "";
-      const yt = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([A-Za-z0-9_-]{6,})/);
-      if (yt) return `https://www.youtube.com/embed/${yt[1]}?rel=0&modestbranding=1`;
-      const vimeo = url.match(/vimeo\.com\/(\d+)/);
-      if (vimeo) return `https://player.vimeo.com/video/${vimeo[1]}?title=0&byline=0&portrait=0`;
-      return url;
-    }
-
-    document.querySelectorAll("[data-lightbox='1']").forEach((card) => {
-      const handler = () => {
-        const type = card.dataset.type || "gallery";
-        const title = card.dataset.title || "";
-        const meta = card.dataset.meta || "";
-
-        if (type === "video") {
-          openLightbox({ type: "video", title, meta, videoUrl: card.dataset.video || "" });
-          return;
-        }
-
-        let images = [];
-        try { images = JSON.parse(card.dataset.images || "[]"); } catch(e) { images = []; }
-
-        openLightbox({ type: "gallery", title, meta, images });
-      };
-
-      card.addEventListener("click", handler);
-      card.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); handler(); }
-      });
-    });
-
-    lbBackdrop.addEventListener("click", closeLightbox);
-    lbClose.addEventListener("click", closeLightbox);
-    lbPrev.addEventListener("click", () => setImage(currentIndex - 1));
-    lbNext.addEventListener("click", () => setImage(currentIndex + 1));
-
-    window.addEventListener("keydown", (e) => {
-      if (!lb.classList.contains("open")) return;
-      if (e.key === "Escape") closeLightbox();
-      if (currentType === "gallery") {
-        if (e.key === "ArrowLeft") setImage(currentIndex - 1);
-        if (e.key === "ArrowRight") setImage(currentIndex + 1);
-      }
-    });
-
-    // ===== LEGAL MODAL con TABS =====
-    const legalModal = document.getElementById("legalModal");
-    const legalBackdrop = document.getElementById("legalBackdrop");
-    const legalClose = document.getElementById("legalClose");
-    const legalBody = document.getElementById("legalBody");
-
-    const tabPrivacy = document.getElementById("tabPrivacy");
-    const tabCookies = document.getElementById("tabCookies");
-    const legalTabs = [tabPrivacy, tabCookies];
-
-    let lastFocusLegal = null;
-
-    const legalTemplates = {
-      privacy: `
-        <h3>Qué datos recopilamos</h3>
-        <p>
-          En este sitio no solicitamos datos sensibles. Solo podríamos recibir la información que tú decidas
-          enviarnos por correo o WhatsApp (por ejemplo: nombre, empresa, brief y fechas).
-        </p>
-
-        <h3>Para qué los usamos</h3>
-        <p>
-          Usamos esos datos únicamente para responder tu solicitud, cotizar, coordinar una reunión o dar seguimiento
-          a un proyecto audiovisual.
-        </p>
-
-        <h3>Con quién los compartimos</h3>
-        <p>
-          No vendemos datos. Solo podríamos compartir información con proveedores técnicos indispensables
-          (por ejemplo: hosting del sitio o plataformas de video) cuando sea necesario para operar el servicio.
-        </p>
-
-        <h3>Cómo contactarnos</h3>
-        <p>
-          Si quieres actualizar o eliminar la información que nos enviaste, escríbenos a
-          <a href="mailto:maria@co-ocreativo.com">maria@co-ocreativo.com</a>.
-        </p>
-
-        <p class="legal-note">
-          Nota: Si incrustamos videos de YouTube u otras plataformas, esas plataformas pueden usar sus propias cookies.
-        </p>
-      `,
-      cookies: `
-        <h3>Qué son las cookies</h3>
-        <p>Las cookies son pequeños archivos que ayudan a recordar preferencias o medir el uso de un sitio.</p>
-
-        <h3>Cookies propias</h3>
-        <p>Este sitio (portafolio estático) no necesita cookies propias para funcionar.</p>
-
-        <h3>Cookies de terceros</h3>
-        <p>
-          Si ves contenido incrustado (por ejemplo, videos de YouTube), el proveedor del contenido
-          puede establecer cookies y recopilar datos de uso según sus políticas.
-        </p>
-
-        <h3>Cómo controlarlas</h3>
-        <p>
-          Puedes borrar o bloquear cookies desde la configuración de tu navegador. Ten en cuenta que algunos
-          contenidos incrustados podrían no reproducirse igual si bloqueas cookies de terceros.
-        </p>
-
-        <p class="legal-note">
-          Si más adelante activamos analítica (por ejemplo, Google Analytics) o un banner de consentimiento,
-          esta sección se actualizará.
-        </p>
-      `
-    };
-
-    function setLegalTab(which){
-      legalTabs.forEach(btn => {
-        const active = btn.getAttribute("data-legal-tab") === which;
-        btn.classList.toggle("active", active);
-        btn.setAttribute("aria-selected", active ? "true" : "false");
-      });
-      legalBody.innerHTML = legalTemplates[which] || "";
-    }
-
-    function openLegal(which){
-      lastFocusLegal = document.activeElement;
-      setLegalTab(which || "privacy");
-
-      legalModal.classList.add("open");
-      legalModal.setAttribute("aria-hidden", "false");
-      document.body.style.overflow = "hidden";
-      (which === "cookies" ? tabCookies : tabPrivacy).focus();
-    }
-
-    function closeLegal(){
-      legalModal.classList.remove("open");
-      legalModal.setAttribute("aria-hidden", "true");
-      document.body.style.overflow = "";
-      if (lastFocusLegal) lastFocusLegal.focus();
-    }
-
-    document.querySelectorAll("[data-legal-open]").forEach(btn=>{
-      btn.addEventListener("click", ()=> openLegal(btn.getAttribute("data-legal-open")));
-    });
-
-    document.querySelectorAll("[data-legal-tab]").forEach(btn=>{
-      btn.addEventListener("click", ()=> setLegalTab(btn.getAttribute("data-legal-tab")));
-    });
-
-    legalBackdrop.addEventListener("click", closeLegal);
-    legalClose.addEventListener("click", closeLegal);
-
-    window.addEventListener("keydown", (e)=>{
-      if (!legalModal.classList.contains("open")) return;
-      if (e.key === "Escape") closeLegal();
-    });
-
-    // Estado inicial tabs
-    setLegalTab("privacy");
-  </script>
-</body>
-</html>
+    .project-card:hover .project-media img,.project-card:focus
