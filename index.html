@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Co-o Creativo | Productora audiovisual</title>
+  <title>Co-o creativo | Productora audiovisual</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Productora audiovisual. Fotografía y video para marcas en Colombia y Latinoamérica que buscan narrativas originales. Menos poses, más realismo mágico.">
 
@@ -70,7 +70,7 @@
       padding:4px 0;
       transition:color .16s ease;
       font-family:"Exo",system-ui,sans-serif;
-      font-weight:800; /* Trabajos y Nosotros bold */
+      font-weight:800;
     }
     .nav-links a::after{
       content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;border-radius:999px;
@@ -79,21 +79,6 @@
     }
     .nav-links a:hover{color:var(--text)}
     .nav-links a:hover::after{width:100%}
-
-    /* CTA oval con más aire lateral */
-    .nav-cta{
-      padding:12px 32px;          /* MÁS ESPACIO */
-      border-radius:var(--radius-pill);
-      border:1px solid rgba(63,13,44,.18);
-      background:rgba(255,255,255,.72);
-      display:inline-flex;align-items:center;gap:10px;
-      font-size:.9rem;font-weight:800;color:var(--text);
-      min-height:46px;
-      line-height:1.1;
-      white-space:nowrap;
-    }
-    .nav-cta::after{display:none}
-    .nav-cta-dot{width:7px;height:7px;border-radius:999px;background:#30d158;box-shadow:0 0 12px rgba(48,209,88,.7)}
 
     /* Switch idioma */
     .lang-switch{
@@ -150,7 +135,7 @@
     .hero-inner{
       display:grid;
       grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
-      gap:76px; /* más aire */
+      gap:76px;
       align-items:center
     }
     .hero-eyebrow{
@@ -367,7 +352,7 @@
       background:#fff;
       min-height:62vh;
       max-height:78vh;
-      padding:22px; /* márgenes */
+      padding:22px;
     }
     #lightboxImage, #lightboxIframe{
       position:absolute;
@@ -532,10 +517,7 @@
         <nav class="nav-links" id="navLinks">
           <a href="#work" data-i18n="nav_work">Trabajos</a>
           <a href="#about" data-i18n="nav_about">Nosotros</a>
-          <a href="#info" class="nav-cta">
-            <span class="nav-cta-dot"></span>
-            <span data-i18n="nav_cta">Proponer un proyecto</span>
-          </a>
+          <!-- (AJUSTE #2) quitado el botón "Proponer un proyecto" -->
         </nav>
 
         <div class="lang-switch" role="group" aria-label="Idioma">
@@ -624,15 +606,15 @@
         </div>
 
         <div class="work-grid">
-          <!-- VIDEO: Finest -->
+          <!-- VIDEO: Finest (AJUSTE #1 portada + AJUSTE #3 link) -->
           <article class="project-card" tabindex="0"
             data-lightbox="1"
             data-type="video"
             data-title="Finest Call Bartender"
-            data-video="https://youtu.be/WVlG8AY4Hlw">
+            data-video="https://youtu.be/Ud8Fpd9MHPQ">
             <div class="project-media">
               <span class="project-chip" data-i18n="chip_video">Video</span>
-              <img src="assets/projects/Eventos_JPG/Eventos-1.jpg" alt="Finest Call Bartender" loading="lazy" decoding="async">
+              <img src="assets/projects/Portadas/1_Bartender.png" alt="Finest Call Bartender" loading="lazy" decoding="async">
             </div>
             <div class="project-body">
               <h3 class="project-title">Finest Call Bartender</h3>
@@ -644,7 +626,7 @@
             </div>
           </article>
 
-          <!-- VIDEO: Real Coco -->
+          <!-- VIDEO: Real Coco (AJUSTE #1 portada; nombre con ":" -> %3A) -->
           <article class="project-card" tabindex="0"
             data-lightbox="1"
             data-type="video"
@@ -652,7 +634,7 @@
             data-video="https://youtu.be/EmOAYnjjqTc">
             <div class="project-media">
               <span class="project-chip" data-i18n="chip_video">Video</span>
-              <img src="assets/projects/Eventos_JPG/Eventos-2.jpg" alt="Real Coco" loading="lazy" decoding="async">
+              <img src="assets/projects/Portadas/2_Coco%3AReal.png" alt="Real Coco" loading="lazy" decoding="async">
             </div>
             <div class="project-body">
               <h3 class="project-title">Real Coco</h3>
@@ -697,7 +679,7 @@
             </div>
           </article>
 
-          <!-- FOTO: Retratos -->
+          <!-- FOTO: Retratos (AJUSTE #1 portada) -->
           <article class="project-card" tabindex="0"
             data-lightbox="1"
             data-type="gallery"
@@ -714,7 +696,7 @@
             ]'>
             <div class="project-media">
               <span class="project-chip" data-i18n="chip_photo">Foto</span>
-              <img src="assets/projects/Retratos_JPG/Retratos-1.jpg" alt="Retratos corporativos" loading="lazy" decoding="async">
+              <img src="assets/projects/Portadas/4_Retratos.png" alt="Retratos corporativos" loading="lazy" decoding="async">
             </div>
             <div class="project-body">
               <h3 class="project-title" data-i18n="proj_portraits_title">Retratos corporativos</h3>
@@ -725,7 +707,7 @@
             </div>
           </article>
 
-          <!-- VIDEO: Trapiche -->
+          <!-- VIDEO: Trapiche (AJUSTE #1 portada) -->
           <article class="project-card" tabindex="0"
             data-lightbox="1"
             data-type="video"
@@ -733,7 +715,7 @@
             data-video="https://youtu.be/XKACm94Yy6M">
             <div class="project-media">
               <span class="project-chip" data-i18n="chip_video">Video</span>
-              <img src="assets/projects/Tigre_JPG/Tigre-2.jpg" alt="Trapiche Argentina" loading="lazy" decoding="async">
+              <img src="assets/projects/Portadas/3_Trapiche.png" alt="Trapiche Argentina" loading="lazy" decoding="async">
             </div>
             <div class="project-body">
               <h3 class="project-title">Trapiche Argentina</h3>
@@ -742,7 +724,7 @@
             </div>
           </article>
 
-          <!-- FOTO: Tigre -->
+          <!-- FOTO: Tigre (AJUSTE #1 portada) -->
           <article class="project-card" tabindex="0"
             data-lightbox="1"
             data-type="gallery"
@@ -766,7 +748,7 @@
             ]'>
             <div class="project-media">
               <span class="project-chip" data-i18n="chip_photo">Foto</span>
-              <img src="assets/projects/Tigre_JPG/Tigre-1.jpg" alt="Tigre de Salón" loading="lazy" decoding="async">
+              <img src="assets/projects/Portadas/5_Tigre.jpg" alt="Tigre de Salón" loading="lazy" decoding="async">
             </div>
             <div class="project-body">
               <h3 class="project-title">Tigre de Salón</h3>
@@ -964,7 +946,6 @@
       es: {
         nav_work: "Trabajos",
         nav_about: "Nosotros",
-        nav_cta: "Proponer un proyecto",
 
         hero_eyebrow: "PROYECTOS AUDIOVISUALES EN COLOMBIA Y LATINOAMÉRICA",
         hero_title_html: 'Fotografía y video para clientes, empresas y marcas que buscan <span>narrativas originales.</span>',
@@ -1065,7 +1046,6 @@
       en: {
         nav_work: "Work",
         nav_about: "About",
-        nav_cta: "Propose a project",
 
         hero_eyebrow: "AUDIOVISUAL PROJECTS IN COLOMBIA & LATIN AMERICA",
         hero_title_html: 'Photography and video for brands and teams looking for <span>original narratives.</span>',
@@ -1195,7 +1175,6 @@
       }
     }
 
-    // init idioma (guardado o auto por navegador)
     const savedLang = localStorage.getItem("coo_lang");
     const browserIsEn = (navigator.language || "").toLowerCase().startsWith("en");
     const defaultLang = savedLang || (browserIsEn ? "en" : "es");
@@ -1248,7 +1227,6 @@
       lbTitle.textContent = title || "";
       lbMeta.textContent = meta || "";
 
-      // reset fuerte para evitar “mezclas” de video+foto
       lbThumbs.innerHTML = "";
       lbIframe.src = "";
       lbImage.src = "";
@@ -1256,7 +1234,6 @@
       lbIframe.style.display = "none";
 
       if (currentType === "video") {
-        // SOLO VIDEO (full)
         lbPrev.style.display = "none";
         lbNext.style.display = "none";
         lbThumbs.style.display = "none";
@@ -1264,7 +1241,6 @@
         lbIframe.style.display = "block";
         lbIframe.src = toEmbedUrl(videoUrl || "", true);
       } else {
-        // SOLO GALERÍA
         currentImages = (images || []).filter(Boolean);
         currentIndex = 0;
 
