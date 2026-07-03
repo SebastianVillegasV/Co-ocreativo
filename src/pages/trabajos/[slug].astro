@@ -1,0 +1,257 @@
+---
+import Base from '../../layouts/Base.astro';
+import { projects } from '../../data/projects';
+
+export function getStaticPaths() {
+  return projects.map((project, i) => ({
+    params: { slug: project.slug },
+    props: { project, next: projects[(i + 1) % projects.length] },
+  }));
+}
+
+const { project, next } = Astro.props;
+---
+
+<Base
+  title={`${project.title} — Co-o creativo`}
+  description={`${project.title}: ${project.logline}`}
+>
+  <!-- APERTURA -->
+  <section class="opener">
+    <img class="opener-img" src={project.cover} alt={project.title} fetchpriority="high" />
+    <div class="opener-scrim" aria-hidden="true"></div>
+    <div class="opener-copy">
+      <p class="eyebrow">{project.meta.join(' · ')}</p>
+      <h1>{project.title}</h1>
+      <p class="logline"><em>{project.logline}</em></p>
+    </div>
+  </section>
+
+  <!-- RELATO -->
+  <section class="story">
+    <div class="wrap story-grid">
+      <div class="story-text">
+        {project.story.map((p) => <p data-reveal>{p}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <!-- PIEZA EN VIDEO -->
+  {
+    project.youtube && (
+      <section class="piece">
+        <div class="wrap">
+          <p class="eyebrow" data-reveal>La pieza</p>
+          <div class="piece-frame" data-reveal>
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${project.youtube}?rel=0&modestbranding=1`}
+              title={project.title}
+              loading="lazy"
+              allow="autoplay; encrypted-media; picture-in-picture"
+              allowfullscreen
+            />
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- GALERÍA -->
+  {
+    project.images.length > 0 && (
+      <section class="gallery">
+        <div class="wrap gallery-grid">
+          {project.images.map((src, i) => (
+            <figure class="g-item" data-reveal>
+              <img src={src} alt={`${project.title} — ${i + 1}`} loading="lazy" decoding="async" />
+            </figure>
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  <!-- CRÉDITOS -->
+  <section class="credits">
+    <div class="wrap">
+      <p class="eyebrow" data-reveal>Ficha</p>
+      <dl data-reveal>
+        {
+          project.credits.map((c) => (
+            <div class="credit-row">
+              <dt>{c.label}</dt>
+              <dd>{c.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
+
+  <!-- SIGUIENTE -->
+  <a class="next" href={`/trabajos/${next.slug}/`}>
+    <div class="wrap">
+      <p class="eyebrow">Siguiente historia</p>
+      <span class="next-title">{next.title} <span class="arrow">→</span></span>
+    </div>
+  </a>
+</Base>
+
+<style>
+  /* ---- Apertura ---- */
+  .opener {
+    position: relative;
+    height: 82svh;
+    min-height: 480px;
+    overflow: hidden;
+  }
+  .opener-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 28%;
+    animation: opener-zoom 14s cubic-bezier(0.2, 0.6, 0.2, 1) both;
+  }
+  @keyframes opener-zoom {
+    from { transform: scale(1.06); }
+    to { transform: scale(1); }
+  }
+  .opener-scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, var(--bg) 2%, rgba(18, 10, 15, 0.2) 45%, rgba(18, 10, 15, 0.35) 100%);
+  }
+  .opener-copy {
+    position: absolute;
+    left: var(--pad);
+    right: var(--pad);
+    bottom: clamp(44px, 8vh, 90px);
+  }
+  .opener-copy h1 {
+    font-family: var(--serif);
+    font-weight: 330;
+    font-size: clamp(2.6rem, 7vw, 6rem);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    margin: 14px 0 10px;
+  }
+  .logline {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 340;
+    font-size: clamp(1.15rem, 2.2vw, 1.7rem);
+    color: var(--gold);
+  }
+
+  /* ---- Relato ---- */
+  .story { padding: clamp(80px, 13vh, 150px) 0; }
+  .story-grid { display: grid; grid-template-columns: minmax(0, 1fr); }
+  .story-text {
+    max-width: 34ch;
+    margin-left: auto;
+    margin-right: clamp(0px, 8vw, 120px);
+  }
+  .story-text p {
+    font-family: var(--serif);
+    font-weight: 350;
+    font-size: clamp(1.25rem, 2.1vw, 1.7rem);
+    line-height: 1.55;
+    letter-spacing: -0.005em;
+  }
+  .story-text p + p { margin-top: 1.4em; }
+  .story-text p:first-child::first-letter {
+    font-size: 2.9em;
+    line-height: 0.8;
+    float: left;
+    padding: 0.08em 0.12em 0 0;
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  /* ---- Pieza en video ---- */
+  .piece { padding-bottom: clamp(80px, 13vh, 150px); }
+  .piece .eyebrow { margin-bottom: 24px; }
+  .piece-frame {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+  }
+  .piece-frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  /* ---- Galería ---- */
+  /* Montaje tipo libro: columnas que respetan la proporción de cada foto */
+  .gallery { padding-bottom: clamp(80px, 13vh, 150px); }
+  .gallery-grid {
+    columns: 2;
+    column-gap: clamp(12px, 1.8vw, 24px);
+  }
+  .g-item {
+    break-inside: avoid;
+    margin-bottom: clamp(12px, 1.8vw, 24px);
+  }
+  .g-item img { width: 100%; height: auto; }
+
+  /* ---- Créditos ---- */
+  .credits {
+    padding: clamp(70px, 10vh, 120px) 0;
+    border-top: 1px solid var(--line);
+  }
+  .credits .eyebrow { margin-bottom: 26px; }
+  .credit-row {
+    display: grid;
+    grid-template-columns: minmax(120px, 220px) 1fr;
+    gap: 20px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.9rem;
+  }
+  .credit-row dt {
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.7rem;
+    color: var(--muted);
+    align-self: baseline;
+    padding-top: 3px;
+  }
+
+  /* ---- Siguiente ---- */
+  .next {
+    display: block;
+    padding: clamp(70px, 11vh, 130px) 0;
+    border-top: 1px solid var(--line);
+    transition: background 0.35s ease;
+  }
+  .next:hover { background: var(--bg-2); }
+  .next .eyebrow { margin-bottom: 14px; }
+  .next-title {
+    font-family: var(--serif);
+    font-weight: 330;
+    font-size: clamp(2.2rem, 5.5vw, 4.6rem);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+  }
+  .next .arrow {
+    color: var(--accent);
+    transition: transform 0.35s ease;
+    display: inline-block;
+  }
+  .next:hover .arrow { transform: translateX(12px); }
+
+  @media (max-width: 720px) {
+    .story-text { margin-inline: 0; }
+    .gallery-grid { columns: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .opener-img { animation: none; }
+  }
+</style>

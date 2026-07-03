@@ -1,0 +1,277 @@
+---
+import Base from '../layouts/Base.astro';
+import { projects, REEL_YOUTUBE_ID } from '../data/projects';
+---
+
+<Base>
+  <!-- APERTURA -->
+  <section class="hero">
+    <img
+      class="hero-img"
+      src="/assets/projects/Tigre_JPG/Tigre-1.jpg"
+      alt="Niña tejiendo una mochila a media luz — Tigre de Salón"
+      fetchpriority="high"
+    />
+    <div class="hero-scrim" aria-hidden="true"></div>
+    <div class="hero-copy">
+      <p class="eyebrow">Productora audiovisual — Medellín, Colombia</p>
+      <h1>
+        Menos poses,<br />
+        <em>más realismo mágico.</em>
+      </h1>
+      <p class="hero-sub">Historias reales para marcas que no quieren sonar como marcas.</p>
+    </div>
+    <a class="hero-scroll" href="#trabajos" aria-label="Ver trabajos">
+      <span></span>
+    </a>
+  </section>
+
+  <!-- FILMOGRAFÍA -->
+  <section class="films" id="trabajos">
+    <div class="films-peek" id="filmsPeek" aria-hidden="true"></div>
+    <div class="wrap">
+      <p class="eyebrow films-eyebrow" data-reveal>Trabajos</p>
+      <div class="films-list">
+        {
+          projects.map((p, i) => (
+            <a class="film-row" href={`/trabajos/${p.slug}/`} data-cover={p.cover} data-reveal>
+              <span class="film-index">{String(i + 1).padStart(2, '0')}</span>
+              <span class="film-title">{p.title}</span>
+              <span class="film-meta">{p.kind} — {p.logline}</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- MANIFIESTO -->
+  <section class="manifesto" id="nosotros">
+    <div class="wrap">
+      <p class="manifesto-text" data-reveal>
+        Creemos que una marca es una historia que alguien decidió creerse.
+        Por eso filmamos lo que pasa cuando <em>nadie está posando</em>:
+        las manos que tejen, el gesto del oficio, el bar a las dos de la mañana.
+        Miramos desde varias ópticas para encontrar la única que importa —
+        <em>la verdad, con un poco de magia.</em>
+      </p>
+      <p class="manifesto-sign" data-reveal>Co-o creativo · desde Medellín para Latinoamérica</p>
+    </div>
+  </section>
+
+  <!-- REEL -->
+  <section class="reel">
+    <div class="wrap">
+      <p class="eyebrow" data-reveal>Reel</p>
+      <div class="reel-frame" data-reveal>
+        <iframe
+          src={`https://www.youtube-nocookie.com/embed/${REEL_YOUTUBE_ID}?rel=0&modestbranding=1`}
+          title="Reel Co-o creativo"
+          loading="lazy"
+          allow="autoplay; encrypted-media; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  // El fondo de la filmografía revela el footage del proyecto bajo el cursor.
+  const peek = document.getElementById('filmsPeek')!;
+  document.querySelectorAll<HTMLAnchorElement>('.film-row').forEach((row) => {
+    row.addEventListener('mouseenter', () => {
+      peek.style.backgroundImage = `url("${row.dataset.cover}")`;
+      peek.classList.add('on');
+    });
+    row.addEventListener('mouseleave', () => peek.classList.remove('on'));
+  });
+</script>
+
+<style>
+  /* ---- Apertura ---- */
+  .hero {
+    position: relative;
+    height: 100svh;
+    min-height: 560px;
+    overflow: hidden;
+  }
+  .hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 22%;
+    animation: hero-zoom 16s cubic-bezier(0.2, 0.6, 0.2, 1) both;
+  }
+  @keyframes hero-zoom {
+    from { transform: scale(1.08); }
+    to { transform: scale(1); }
+  }
+  .hero-scrim {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to top, var(--bg) 0%, rgba(18, 10, 15, 0.25) 42%, rgba(18, 10, 15, 0.25) 100%),
+      radial-gradient(ellipse at center, transparent 50%, rgba(18, 10, 15, 0.55) 100%);
+  }
+  .hero-copy {
+    position: absolute;
+    left: var(--pad);
+    right: var(--pad);
+    bottom: clamp(70px, 13vh, 130px);
+  }
+  .hero-copy h1 {
+    font-family: var(--serif);
+    font-weight: 330;
+    font-size: clamp(2.6rem, 7.2vw, 6.4rem);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    margin: 18px 0 20px;
+    max-width: 14ch;
+  }
+  .hero-copy h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .hero-sub {
+    color: var(--muted);
+    font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+    max-width: 44ch;
+  }
+  .hero-scroll {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    height: clamp(46px, 8vh, 80px);
+    width: 1px;
+  }
+  .hero-scroll span {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent, var(--ink));
+    animation: scroll-pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes scroll-pulse {
+    0%, 100% { opacity: 0.25; }
+    50% { opacity: 0.9; }
+  }
+
+  /* ---- Filmografía ---- */
+  .films {
+    position: relative;
+    padding: clamp(100px, 16vh, 180px) 0;
+  }
+  .films-peek {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.55s ease, background-image 0s;
+    pointer-events: none;
+  }
+  .films-peek::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, var(--bg) 8%, rgba(18, 10, 15, 0.55) 55%, rgba(18, 10, 15, 0.75) 100%);
+  }
+  .films-peek.on { opacity: 0.5; }
+  .films .wrap { position: relative; }
+  .films-eyebrow { margin-bottom: 34px; }
+  .film-row {
+    display: grid;
+    grid-template-columns: 3.2rem 1fr auto;
+    align-items: baseline;
+    gap: 18px;
+    padding: clamp(22px, 3.6vh, 34px) 0;
+    border-top: 1px solid var(--line);
+    transition: transform 0.35s cubic-bezier(0.2, 0.6, 0.2, 1);
+  }
+  .film-row:last-child { border-bottom: 1px solid var(--line); }
+  .film-index {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    color: var(--faint);
+  }
+  .film-title {
+    font-family: var(--serif);
+    font-weight: 340;
+    font-size: clamp(1.9rem, 4.6vw, 3.8rem);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    color: rgba(245, 222, 216, 0.82);
+    transition: color 0.3s ease, font-style 0.3s ease;
+  }
+  .film-meta {
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--muted);
+    text-align: right;
+    max-width: 34ch;
+  }
+  .film-row:hover { transform: translateX(10px); }
+  .film-row:hover .film-title {
+    color: var(--ink);
+    font-style: italic;
+  }
+
+  /* ---- Manifiesto ---- */
+  .manifesto {
+    padding: clamp(100px, 16vh, 180px) 0;
+    border-top: 1px solid var(--line);
+  }
+  .manifesto-text {
+    font-family: var(--serif);
+    font-weight: 330;
+    font-size: clamp(1.5rem, 3.2vw, 2.7rem);
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    max-width: 30ch;
+  }
+  .manifesto-text em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .manifesto-sign {
+    margin-top: 40px;
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--muted);
+  }
+
+  /* ---- Reel ---- */
+  .reel { padding-bottom: clamp(100px, 16vh, 180px); }
+  .reel .eyebrow { margin-bottom: 24px; }
+  .reel-frame {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+  }
+  .reel-frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  @media (max-width: 720px) {
+    .film-row { grid-template-columns: 2.4rem 1fr; }
+    .film-meta {
+      grid-column: 2;
+      text-align: left;
+      margin-top: 2px;
+    }
+    .films-peek.on { opacity: 0.28; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-img { animation: none; }
+    .hero-scroll span { animation: none; }
+  }
+</style>

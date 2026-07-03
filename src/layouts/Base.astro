@@ -1,0 +1,241 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Co-o creativo — Productora audiovisual',
+  description = 'Productora audiovisual en Medellín, Colombia. Historias reales para marcas que no quieren sonar como marcas. Menos poses, más realismo mágico.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Archivo:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="nav">
+      <a class="wordmark" href="/">co-o <em>creativo</em></a>
+      <nav class="nav-links">
+        <a href="/#trabajos">Trabajos</a>
+        <a href="/#nosotros">Nosotros</a>
+        <a href="/#contacto">Contacto</a>
+      </nav>
+    </header>
+
+    <slot />
+
+    <footer class="footer" id="contacto">
+      <p class="footer-kicker">¿Tienes una historia que contar?</p>
+      <a class="footer-cta" href="mailto:maria@co-ocreativo.com">Hablemos<span class="dot">.</span></a>
+      <div class="footer-meta">
+        <div>
+          <a href="mailto:maria@co-ocreativo.com">maria@co-ocreativo.com</a>
+          <span class="sep">·</span>
+          <a href="https://wa.me/573212712271" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+        <div class="footer-legal">
+          © Co-o Creativo S.A.S <span id="year"></span> — Medellín, Colombia
+        </div>
+      </div>
+    </footer>
+
+    <div class="grain" aria-hidden="true"></div>
+
+    <script>
+      document.getElementById('year')!.textContent = String(new Date().getFullYear());
+
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (e.isIntersecting) {
+              e.target.classList.add('in');
+              io.unobserve(e.target);
+            }
+          }
+        },
+        { threshold: 0.12 }
+      );
+      document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el));
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --bg: #120a0f;
+    --bg-2: #1b1016;
+    --ink: #f5ded8;
+    --muted: rgba(245, 222, 216, 0.55);
+    --faint: rgba(245, 222, 216, 0.26);
+    --line: rgba(245, 222, 216, 0.14);
+    --accent: #c85c52;
+    --gold: #d9a05b;
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'Archivo', system-ui, sans-serif;
+    --pad: clamp(20px, 4vw, 56px);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  /* ---- Textura de película ---- */
+  .grain {
+    position: fixed;
+    inset: -50%;
+    width: 200%;
+    height: 200%;
+    pointer-events: none;
+    z-index: 90;
+    opacity: 0.055;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation: grain-shift 1.2s steps(4) infinite;
+  }
+  @keyframes grain-shift {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(-2%, 1%); }
+    50% { transform: translate(1%, -2%); }
+    75% { transform: translate(-1%, 2%); }
+    100% { transform: translate(0, 0); }
+  }
+
+  /* ---- Navegación ---- */
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 80;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 26px var(--pad);
+    background: linear-gradient(to bottom, rgba(18, 10, 15, 0.82), rgba(18, 10, 15, 0));
+  }
+  .wordmark {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+  .wordmark em {
+    font-style: italic;
+    font-weight: 350;
+    color: var(--gold);
+  }
+  .nav-links {
+    display: flex;
+    gap: clamp(18px, 3vw, 40px);
+  }
+  .nav-links a {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--muted);
+    transition: color 0.25s ease;
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  @media (max-width: 720px) {
+    .nav { padding: 18px 20px; }
+    .wordmark { font-size: 1rem; }
+    .nav-links { gap: 14px; }
+    .nav-links a {
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+    }
+  }
+
+  /* ---- Utilidades ---- */
+  .wrap {
+    width: min(1240px, 100% - 2 * var(--pad));
+    margin-inline: auto;
+  }
+  .eyebrow {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.26em;
+    color: var(--muted);
+  }
+
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity 0.9s cubic-bezier(0.2, 0.6, 0.2, 1), transform 0.9s cubic-bezier(0.2, 0.6, 0.2, 1);
+  }
+  [data-reveal].in {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ---- Footer ---- */
+  .footer {
+    padding: clamp(90px, 14vh, 160px) var(--pad) 40px;
+    border-top: 1px solid var(--line);
+  }
+  .footer-kicker {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.26em;
+    color: var(--muted);
+    margin-bottom: 18px;
+  }
+  .footer-cta {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 340;
+    font-size: clamp(3rem, 9vw, 7.5rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    display: inline-block;
+    transition: color 0.3s ease;
+  }
+  .footer-cta:hover { color: var(--gold); }
+  .footer-cta .dot { color: var(--accent); font-style: normal; }
+  .footer-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: clamp(48px, 8vh, 90px);
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+  .footer-meta a { border-bottom: 1px solid var(--faint); transition: color 0.25s, border-color 0.25s; }
+  .footer-meta a:hover { color: var(--ink); border-color: var(--ink); }
+  .footer-meta .sep { margin: 0 10px; color: var(--faint); }
+  .footer-legal { color: var(--faint); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .grain { animation: none; }
+    [data-reveal] { opacity: 1; transform: none; transition: none; }
+    html { scroll-behavior: auto; }
+  }
+</style>
